@@ -1,5 +1,7 @@
 package edu.ramapo.ipluchino.mlbbetbuddy.Model;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import java.lang.reflect.Type;
 import java.net.*;
@@ -14,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 
 public class BetPredictorModel {
     //Constants
-    public static final String VIEW_LINK = "http://localhost:5000/view/";
+    public static final String VIEW_LINK = "http://96.242.10.84:5000/view/";
 
     //Makes a request to the MLB Bet Buddy server to access data from a specific table, and parses the information returned.
     //SOURCE: https://docs.oracle.com/javase/tutorial/networking/urls/readingWriting.html
@@ -22,6 +24,8 @@ public class BetPredictorModel {
         //Create the url string and URL object to make a request to the server.
         String urlLink = VIEW_LINK + a_tableName;
         URL URLObj = new URL(urlLink);
+
+        Log.d("test", "t1");
 
         //Attempt to create a connection with the server and set up an input stream.
         BufferedReader in;
@@ -31,6 +35,7 @@ public class BetPredictorModel {
         }
         //If a connection with the server could not be made, or an invalid table name was provided, simply return an empty vector.
         catch (IOException e) {
+            Log.d("test", e.toString());
             return new Vector<>();
         }
 
