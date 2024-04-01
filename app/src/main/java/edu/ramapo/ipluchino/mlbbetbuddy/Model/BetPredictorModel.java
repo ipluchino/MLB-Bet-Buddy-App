@@ -76,6 +76,8 @@ public class BetPredictorModel {
 
     //Takes a UTC DateTime string and a Timezone ID and converts the DateTimeString to the given timezone.
     //Returns a time in the format 7:10 PM.
+    //https://stackoverflow.com/questions/6543174/how-can-i-parse-utc-date-time-string-into-something-more-readable
+    //https://stackoverflow.com/questions/42425393/how-to-format-a-zoneddatetime-to-a-string
     public static String ConvertToTimezone(String a_dateToConvert, String a_timeZoneID) {
         //Create a UTC instant of the provided UTC date.
         Instant instant = Instant.parse(a_dateToConvert);
@@ -97,8 +99,6 @@ public class BetPredictorModel {
     }
 
     //TESTING.
-    //https://stackoverflow.com/questions/6543174/how-can-i-parse-utc-date-time-string-into-something-more-readable
-    //https://stackoverflow.com/questions/42425393/how-to-format-a-zoneddatetime-to-a-string
     public static void main(String[] args) throws IOException {
         //Testing database query.
         Vector<HashMap<String, Object>> data = GetDataFromServer("TodaySchedule");
