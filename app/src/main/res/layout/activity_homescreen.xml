@@ -27,7 +27,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleTextView"
-        app:srcCompat="@drawable/mlb" />
+        app:srcCompat="@drawable/mlb_logo" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/scheduleButton"
