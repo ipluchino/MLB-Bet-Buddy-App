@@ -17,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 public class BetPredictorModel {
     //Constants
     public static final String VIEW_LINK = "Example MLB Bet Buddy Server Link";
+    public static final int TIMEOUT_TIME = 3000;
 
     //Makes a request to the MLB Bet Buddy server to access data from a specific table, and parses the information returned.
     //SOURCE: https://docs.oracle.com/javase/tutorial/networking/urls/readingWriting.html
@@ -25,17 +26,17 @@ public class BetPredictorModel {
         String urlLink = VIEW_LINK + a_tableName;
         URL URLObj = new URL(urlLink);
 
-        Log.d("test", "t1");
-
         //Attempt to create a connection with the server and set up an input stream.
         BufferedReader in;
         try {
             URLConnection connection = URLObj.openConnection();
+
+            //Make sure to set the timeout time, so that the app does not hang if the server is offline or takes too long to respond.
+            connection.setConnectTimeout(TIMEOUT_TIME);
             in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         }
         //If a connection with the server could not be made, or an invalid table name was provided, simply return an empty vector.
         catch (IOException e) {
-            Log.d("test", e.toString());
             return new Vector<>();
         }
 
@@ -106,10 +107,12 @@ public class BetPredictorModel {
     //TESTING.
     public static void main(String[] args) throws IOException {
         //Testing database query.
+        System.out.println("Hi");
         Vector<HashMap<String, Object>> data = GetDataFromServer("TodaySchedule");
         for (HashMap<String, Object> hm: data) {
             System.out.println(hm);
         }
+        System.out.println("Hi2");
 
         //Testing time conversion.
         String sampleDateTime = "2024-04-02T02:10:00Z";
