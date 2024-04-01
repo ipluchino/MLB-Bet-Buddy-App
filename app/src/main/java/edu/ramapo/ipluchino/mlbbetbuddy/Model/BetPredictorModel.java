@@ -1,5 +1,7 @@
 package edu.ramapo.ipluchino.mlbbetbuddy.Model;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import java.lang.reflect.Type;
 import java.net.*;
@@ -23,6 +25,8 @@ public class BetPredictorModel {
         String urlLink = VIEW_LINK + a_tableName;
         URL URLObj = new URL(urlLink);
 
+        Log.d("test", "t1");
+
         //Attempt to create a connection with the server and set up an input stream.
         BufferedReader in;
         try {
@@ -31,6 +35,7 @@ public class BetPredictorModel {
         }
         //If a connection with the server could not be made, or an invalid table name was provided, simply return an empty vector.
         catch (IOException e) {
+            Log.d("test", e.toString());
             return new Vector<>();
         }
 
