@@ -15,14 +15,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.compose.foundation.layout.Arrangement;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.TimeZone;
 import java.util.Vector;
 
 public class ScheduleActivity extends AppCompatActivity {
@@ -30,7 +33,7 @@ public class ScheduleActivity extends AppCompatActivity {
     private final String SCHEDULE_TABLE_NAME = "TodaySchedule";
 
     //Private variables
-    private BetPredictorModel m_bpModelObj;
+    private BetPredictorModel m_BPModelObj;
     private Vector<HashMap<String, Object>> m_games;
     private TableLayout m_tableLayout;
     private TextView m_dateTextView;
@@ -43,7 +46,7 @@ public class ScheduleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_schedule);
 
         //Initialize the private variables.
-        m_bpModelObj = new BetPredictorModel();
+        m_BPModelObj = new BetPredictorModel();
         m_tableLayout = findViewById(R.id.scheduleTable);
         m_dateTextView = findViewById(R.id.dateTextView);
         m_homeButton = findViewById(R.id.homeButtonSchedule);
@@ -78,7 +81,7 @@ public class ScheduleActivity extends AppCompatActivity {
         //Set up a new thread to query the server.
         Thread thread = new Thread(() -> {
             try {
-                m_games = m_bpModelObj.GetDataFromServer(SCHEDULE_TABLE_NAME);
+                m_games = m_BPModelObj.GetDataFromServer(SCHEDULE_TABLE_NAME);
                 //If the server does not respond or is offline, use an empty vector to represent the games.
             } catch (IOException e) {
                 Log.d("test", "I'm here");
@@ -123,27 +126,54 @@ public class ScheduleActivity extends AppCompatActivity {
     //https://stackoverflow.com/questions/6583843/how-to-access-resource-with-dynamic-name-in-my-case
     //https://stackoverflow.com/questions/8669747/dynamically-add-imageview-to-tablerow
     private void FillScheduleTable() {
+        //Set the date for the schedule table.
+        m_dateTextView.setText((String) m_games.get(0).get("Date"));
+
         //Loop through each of the games being played.
         for (HashMap<String, Object> game : m_games) {
             //Create a new table row.
             TableRow tableRow = new TableRow(this);
 
-            //Create the away team logo.
-            ImageView awayTeamLogo = CreateTeamLogo((String) game.get("Away Team Name"));
+            /*
+            // Create OnClickListener for the entire TableRow
+            tableRow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("Test", "I was clicked!");
+                }
+            });
+            */
+
+            //Create the away team logo and abbreviation.
+            String awayTeamName = (String) game.get("Away Team Name");
+            ImageView awayTeamLogo = CreateTeamLogo(awayTeamName);
+            TextView awayTeamAbbreviation = CreateTextView(m_BPModelObj.TEAM_ABBREVIATION.get(awayTeamName), 15, 0, 50, 30, 20);
             tableRow.addView(awayTeamLogo);
+            tableRow.addView(awayTeamAbbreviation);
 
             //Create the @ sign between the team logos.
-            TextView atSign = new TextView(this);
-            atSign.setTextColor(Color.BLACK);
-            atSign.setText("@");
-            atSign.setTextSize(40);
-            atSign.setPadding(30, 20, 30, 20);;
-
+            TextView atSign = CreateTextView("Vs.", 15, 0, 50, 20, 20);
             tableRow.addView(atSign);
 
-            //Create the home team logo.
+            //Create the home team logo and abbreviation.
+            String homeTeamName = (String) game.get("Home Team Name");
             ImageView homeTeamLogo = CreateTeamLogo((String) game.get("Home Team Name"));
+            TextView homeTeamAbbreviation = CreateTextView(m_BPModelObj.TEAM_ABBREVIATION.get(homeTeamName), 15, 0, 50, 50, 20);
             tableRow.addView(homeTeamLogo);
+            tableRow.addView(homeTeamAbbreviation);
+
+            //Set the local time of the game based on the timezone.
+            TimeZone localTimezone = TimeZone.getDefault();
+            String UTCGameTime = (String) game.get("DateTime String");
+            String localGameTime = m_BPModelObj.ConvertToTimezone(UTCGameTime, localTimezone.getID());
+            TextView gameTime = CreateTextView(localGameTime, 15, 0, 50, 80, 20);
+            tableRow.addView(gameTime);
+
+            //Create the weather icon for the game.
+            String weatherDescription = (String) game.get("Weather Description");
+            Log.d("Test", weatherDescription);
+            ImageView weatherIcon = CreateWeatherIcon(weatherDescription);
+            tableRow.addView(weatherIcon);
 
             //Add the row into the table.
             m_tableLayout.addView(tableRow);
@@ -164,15 +194,75 @@ public class ScheduleActivity extends AppCompatActivity {
     }
 
     private ImageView CreateTeamLogo(String a_teamName) {
+        //Get the image name and ID for the team name.
         String logoName = GetLogoName(a_teamName);
-        int imageID = getResources().getIdentifier(logoName, "drawable", getPackageName());
+        int logoID = getResources().getIdentifier(logoName, "drawable", getPackageName());
 
+        //Create and set the attributes of the image.
         ImageView teamLogo = new ImageView(this);
-        teamLogo.setLayoutParams(new TableRow.LayoutParams(200, 200));
-        teamLogo.setImageResource(imageID);
-        teamLogo.setPadding(30, 20, 30, 20);
+        teamLogo.setLayoutParams(new TableRow.LayoutParams(150, 150));
+        teamLogo.setImageResource(logoID);
+        teamLogo.setPadding(10, 20, 20, 20);
 
         return teamLogo;
+    }
+
+    private TextView CreateTextView(String a_text, int a_size, int a_padL, int a_padT, int a_padR, int a_padB) {
+        //Set the attributes of the TextView object based on the parameters sent to this function.
+        TextView textView = new TextView(this);
+        textView.setTextColor(Color.BLACK);
+        textView.setText(a_text);
+        textView.setTextSize(a_size);
+        textView.setPadding(a_padL, a_padT, a_padR, a_padB);
+        textView.setGravity(View.TEXT_ALIGNMENT_CENTER);
+
+        return textView;
+    }
+
+    private ImageView CreateWeatherIcon(String a_weatherDescription) {
+        //Get the image name and ID based on the weather description.
+        String weatherIconName = GetWeatherIconName(a_weatherDescription);
+        int weatherID = getResources().getIdentifier(weatherIconName, "drawable", getPackageName());
+
+        //Create and set the attributes of the image.
+        ImageView weatherIcon = new ImageView(this);
+        weatherIcon.setLayoutParams(new TableRow.LayoutParams(150, 150));
+        weatherIcon.setImageResource(weatherID);
+        weatherIcon.setPadding(10, 20, 20, 20);
+
+        return weatherIcon;
+    }
+
+    private String GetWeatherIconName(String a_weatherDescription) {
+        //Determine the name of the image to use based on the weather description.
+        if (a_weatherDescription.toLowerCase().contains("snow")) {
+            return "snow";
+        }
+        else if (a_weatherDescription.toLowerCase().contains("sleet") ||
+                 a_weatherDescription.toLowerCase().contains("freezing rain") ||
+                 a_weatherDescription.toLowerCase().contains("freezing drizzle") ||
+                 a_weatherDescription.toLowerCase().contains("ice pellets")) {
+            return "sleet";
+        }
+        else if (a_weatherDescription.toLowerCase().contains("thunder")) {
+            return "thunderstorm";
+        }
+        else if (a_weatherDescription.toLowerCase().contains("patchy rain") ||
+                 a_weatherDescription.toLowerCase().contains("mist") ||
+                 a_weatherDescription.toLowerCase().contains("drizzle")) {
+            return "drizzle";
+        }
+        else if (a_weatherDescription.toLowerCase().contains("rain")) {
+            return "rain";
+        }
+        else if (a_weatherDescription.toLowerCase().contains("overcast") ||
+                 a_weatherDescription.toLowerCase().contains("cloudy")) {
+            return "cloudy";
+        }
+        else
+        {
+            return "sunny";
+        }
     }
 
 }
