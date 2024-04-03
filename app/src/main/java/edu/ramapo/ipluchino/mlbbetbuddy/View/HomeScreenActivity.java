@@ -31,6 +31,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         m_scheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Navigate to the schedule screen.
                 Intent intent = new Intent(getApplicationContext(), ScheduleActivity.class);
                 startActivity(intent);
             }
