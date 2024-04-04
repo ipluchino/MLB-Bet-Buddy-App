@@ -63,10 +63,10 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:divider="@drawable/row_divider"
+            android:divider="@drawable/divider"
             android:showDividers="middle">
         </TableLayout>
 
-    ></ScrollView>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

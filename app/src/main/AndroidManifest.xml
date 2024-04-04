@@ -37,6 +37,13 @@
             android:theme="@style/Theme.MLBBetBuddy" >
         </activity>
 
+        <activity
+            android:name=".View.ScheduleDetailsActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.MLBBetBuddy" >
+        </activity>
+
     </application>
 
 </manifest>

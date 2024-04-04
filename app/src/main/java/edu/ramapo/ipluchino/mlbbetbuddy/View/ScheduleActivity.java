@@ -135,7 +135,12 @@ public class ScheduleActivity extends AppCompatActivity {
             tableRow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("Test", String.valueOf(game));
+                    //Switch to the schedule details state.
+                    Intent intent = new Intent(getApplicationContext(), ScheduleDetailsActivity.class);
+
+                    //Pass the game details to the Schedule Details Activity.
+                    intent.putExtra("gameDetails", game);
+                    startActivity(intent);
                 }
             });
 
