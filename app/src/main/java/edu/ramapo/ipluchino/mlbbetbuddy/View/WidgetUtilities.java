@@ -2,6 +2,10 @@ package edu.ramapo.ipluchino.mlbbetbuddy.View;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TableRow;
@@ -51,6 +55,13 @@ public class WidgetUtilities {
         return weatherIcon;
     }
 
+    //Helper function to make partial amount of text bold, dynamically. Returns a SpannableString object.
+    //Assistance: https://stackoverflow.com/questions/14371092/how-to-make-a-specific-text-on-textview-bold
+    public static SpannableString MakePartialTextBold(String a_boldText, String a_restText) {
+        SpannableString partialBoldedString = new SpannableString(a_boldText + a_restText);
+        partialBoldedString.setSpan(new StyleSpan(Typeface.BOLD), 0, a_boldText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return partialBoldedString;
+    }
     //Helper function to get the file name of a team logo.
     private static String GetLogoName(String a_teamName) {
         //Remove any periods from the team name (if they exist).
