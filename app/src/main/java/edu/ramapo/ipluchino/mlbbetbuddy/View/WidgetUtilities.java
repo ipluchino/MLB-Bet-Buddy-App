@@ -1,6 +1,9 @@
 package edu.ramapo.ipluchino.mlbbetbuddy.View;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Spannable;
@@ -11,7 +14,16 @@ import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Vector;
+import java.util.concurrent.atomic.AtomicReference;
+
+import edu.ramapo.ipluchino.mlbbetbuddy.Model.BetPredictorModel;
+
 public class WidgetUtilities {
+    //Constants
+
     //Creates an ImageView object that represents a team's logo.
     public static ImageView CreateTeamLogo(Context a_context, String a_teamName, int a_width, int a_height, int a_padL, int a_padT, int a_padR, int a_padB) {
         //Get the image name and ID for the team name.
@@ -62,6 +74,57 @@ public class WidgetUtilities {
         partialBoldedString.setSpan(new StyleSpan(Typeface.BOLD), 0, a_boldText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return partialBoldedString;
     }
+
+    //Gets data from the MLB Bet Buddy Server.
+    //Assistance: https://stackoverflow.com/questions/6343166/how-can-i-fix-android-os-networkonmainthreadexception
+    //Assistance: https://stackoverflow.com/questions/60408193/local-atomicreference-and-array-with-lambda
+    public static Vector<HashMap<String, Object>> GetData(String a_tableName) {
+        //Note: Create an AtomicReference object because you cannot have a mutable object (the vector of hashmaps) in a lambda expression.
+        AtomicReference<Vector<HashMap<String, Object>>> result = new AtomicReference<>();
+        BetPredictorModel BPModelObj = new BetPredictorModel();
+
+        //Set up a new thread to query the server.
+        Thread thread = new Thread(() -> {
+            try {
+                result.set(BPModelObj.GetDataFromServer(a_tableName));
+                //If the server does not respond or is offline, use an empty vector to represent the games.
+            } catch (IOException e) {
+                result.set(new Vector<HashMap<String, Object>>());
+            }
+        });
+
+        //Start the thread and wait for it to finish fetching the data from the server.
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            result.set(new Vector<HashMap<String, Object>>());
+        }
+
+        return result.get();
+    }
+
+    //Displays an alert dialog if there is no data returned from the server.
+    public static void DisplayLackOfData(Context a_context) {
+        //Create an alert dialog box to alert the user.
+        AlertDialog.Builder builder = new AlertDialog.Builder(a_context);
+        builder.setTitle("Oops!");
+
+        builder.setMessage("There were no data found today. Please try again later.");
+
+        //OK button to clear the alert dialog and go back to the home screen of the app.
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //Navigate back to the home screen of the app.
+                Intent intent = new Intent(a_context, HomeScreenActivity.class);
+                a_context.startActivity(intent);
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
     //Helper function to get the file name of a team logo.
     private static String GetLogoName(String a_teamName) {
         //Remove any periods from the team name (if they exist).

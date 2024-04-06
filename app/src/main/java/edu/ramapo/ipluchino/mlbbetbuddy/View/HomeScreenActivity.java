@@ -36,6 +36,15 @@ public class HomeScreenActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        m_NRFIYRFIButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Navigate to the schedule screen.
+                Intent intent = new Intent(getApplicationContext(), NRFIYRFIActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }

@@ -48,11 +48,15 @@ public class ScheduleActivity extends AppCompatActivity {
         m_homeButton = findViewById(R.id.homeButtonSchedule);
 
         //Attempt to query the server for the schedule information. This is done on a separate thread, not the main thread.
-        GetGames();
+        m_games = WidgetUtilities.GetData(SCHEDULE_TABLE_NAME);
 
         //If no games are returned from the server, display a message alerting the user.
         if (m_games.isEmpty()) {
-            DisplayLackOfData();
+            //Make some of the components invisible.
+            m_homeButton.setVisibility(View.GONE);
+            m_dateTextView.setVisibility(View.GONE);
+
+            WidgetUtilities.DisplayLackOfData(this);
         }
 
         //Set all of the onClick listeners for the buttons.
@@ -67,52 +71,6 @@ public class ScheduleActivity extends AppCompatActivity {
 
         //Fill in the schedule table.
         FillScheduleTable();
-    }
-
-    //Gets today's schedule from the server.
-    //Assistance: https://stackoverflow.com/questions/6343166/how-can-i-fix-android-os-networkonmainthreadexception
-    private void GetGames() {
-        //Set up a new thread to query the server.
-        Thread thread = new Thread(() -> {
-            try {
-                m_games = m_BPModelObj.GetDataFromServer(SCHEDULE_TABLE_NAME);
-                //If the server does not respond or is offline, use an empty vector to represent the games.
-            } catch (IOException e) {
-                m_games = new Vector<HashMap<String, Object>>();
-            }
-        });
-
-        //Start the thread and wait for it to finish fetching the data from the server.
-        thread.start();
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            m_games = new Vector<HashMap<String, Object>>();
-        }
-    }
-
-    //Displays an alert dialog if there is no data returned from the server.
-    private void DisplayLackOfData() {
-        //Make some of the components invisible.
-        m_homeButton.setVisibility(View.GONE);
-        m_dateTextView.setVisibility(View.GONE);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(ScheduleActivity.this);
-        builder.setTitle("No games!");
-
-        builder.setMessage("There were no games found today. Please try again later.");
-
-        //OK button to clear the alert dialog and go back to the home screen of the app.
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                //Navigate back to the home screen of the app.
-                Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
     }
 
     //Fills in the schedule table dynamically.
