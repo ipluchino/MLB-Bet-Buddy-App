@@ -109,10 +109,10 @@
                     android:text="New York Yankees"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:gravity="center_vertical|center_horizontal"
+                    android:gravity="center"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMinTextSize="8sp"
-                    android:autoSizeMaxTextSize="20sp"
+                    android:autoSizeMaxTextSize="18sp"
                     android:maxLines="2" />
 
                 <TextView
@@ -137,7 +137,7 @@
                     android:gravity="center"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMinTextSize="8sp"
-                    android:autoSizeMaxTextSize="20sp"
+                    android:autoSizeMaxTextSize="18sp"
                     android:maxLines="2" />
 
             </TableRow>
@@ -152,14 +152,14 @@
                     android:id="@+id/homeTeamRecordSchedule"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="33-21"
-                    android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:autoSizeTextType="uniform"
+                    android:autoSizeMaxTextSize="19sp"
                     android:autoSizeMinTextSize="8sp"
-                    android:autoSizeMaxTextSize="24sp"
-                    android:maxLines="1" />
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="33-21"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -183,7 +183,7 @@
                     android:gravity="center"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMinTextSize="8sp"
-                    android:autoSizeMaxTextSize="24sp"
+                    android:autoSizeMaxTextSize="19sp"
                     android:maxLines="1" />
 
             </TableRow>
@@ -201,10 +201,10 @@
                     android:text="Gerrit Cole"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:gravity="center_vertical|center_horizontal"
+                    android:gravity="center"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMinTextSize="8sp"
-                    android:autoSizeMaxTextSize="20sp"
+                    android:autoSizeMaxTextSize="18sp"
                     android:maxLines="2" />
 
                 <TextView
@@ -229,7 +229,7 @@
                     android:gravity="center"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMinTextSize="8sp"
-                    android:autoSizeMaxTextSize="20sp"
+                    android:autoSizeMaxTextSize="18sp"
                     android:maxLines="2" />
 
             </TableRow>

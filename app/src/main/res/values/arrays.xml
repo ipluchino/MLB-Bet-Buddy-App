@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="NRFIYRFIOptions">
+        <item>NRFI</item>
+        <item>YRFI</item>
+    </string-array>
+</resources>
