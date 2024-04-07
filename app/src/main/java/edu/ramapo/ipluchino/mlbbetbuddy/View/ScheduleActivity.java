@@ -50,6 +50,8 @@ public class ScheduleActivity extends AppCompatActivity {
         //Attempt to query the server for the schedule information. This is done on a separate thread, not the main thread.
         m_games = WidgetUtilities.GetData(SCHEDULE_TABLE_NAME);
 
+        //Determine what ordering to order the games in based on the user's initial choice.
+
         //If no games are returned from the server, display a message alerting the user.
         if (m_games.isEmpty()) {
             //Make some of the components invisible.
@@ -104,7 +106,7 @@ public class ScheduleActivity extends AppCompatActivity {
 
             //Create the away team logo and abbreviation.
             String awayTeamName = (String) game.get("Away Team Name");
-            ImageView awayTeamLogo = WidgetUtilities.CreateTeamLogo(this, awayTeamName, 150, 150, 10, 20, 20, 20);
+            ImageView awayTeamLogo = WidgetUtilities.CreateTeamLogo(this, awayTeamName, 150, 150, 30, 20, 20, 20);
             TextView awayTeamAbbreviation = WidgetUtilities.CreateTextView(this, BetPredictorModel.TEAM_ABBREVIATION.get(awayTeamName), 15, 0, 50, 20, 20);
             tableRow.addView(awayTeamLogo);
             tableRow.addView(awayTeamAbbreviation);

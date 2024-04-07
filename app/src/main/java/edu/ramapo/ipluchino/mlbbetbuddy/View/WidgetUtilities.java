@@ -15,7 +15,9 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -23,6 +25,7 @@ import edu.ramapo.ipluchino.mlbbetbuddy.Model.BetPredictorModel;
 
 public class WidgetUtilities {
     //Constants
+    private static final List<String> VALID_TABLES = Arrays.asList("TodaySchedule", "TodayNRFI", "TodayHitting", "ArchiveSchedule", "ArchiveNRFI", "ArchiveHitting");
 
     //Creates an ImageView object that represents a team's logo.
     public static ImageView CreateTeamLogo(Context a_context, String a_teamName, int a_width, int a_height, int a_padL, int a_padT, int a_padR, int a_padB) {
@@ -79,6 +82,11 @@ public class WidgetUtilities {
     //Assistance: https://stackoverflow.com/questions/6343166/how-can-i-fix-android-os-networkonmainthreadexception
     //Assistance: https://stackoverflow.com/questions/60408193/local-atomicreference-and-array-with-lambda
     public static Vector<HashMap<String, Object>> GetData(String a_tableName) {
+        //Make sure the table being provided to this function is a valid one.
+        if (!VALID_TABLES.contains(a_tableName)) {
+            return new Vector<HashMap<String, Object>>();
+        }
+
         //Note: Create an AtomicReference object because you cannot have a mutable object (the vector of hashmaps) in a lambda expression.
         AtomicReference<Vector<HashMap<String, Object>>> result = new AtomicReference<>();
         BetPredictorModel BPModelObj = new BetPredictorModel();
@@ -110,7 +118,7 @@ public class WidgetUtilities {
         AlertDialog.Builder builder = new AlertDialog.Builder(a_context);
         builder.setTitle("Oops!");
 
-        builder.setMessage("There were no data found today. Please try again later.");
+        builder.setMessage("There was no data found today. Please try again later.");
 
         //OK button to clear the alert dialog and go back to the home screen of the app.
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
