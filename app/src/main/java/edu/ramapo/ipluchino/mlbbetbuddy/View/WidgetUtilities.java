@@ -133,6 +133,36 @@ public class WidgetUtilities {
         alertDialog.show();
     }
 
+    //Fills in all TextViews based on criteria from the Vector of Vectors "a_updateInformation".
+    public static void FillInTableTextViews(Vector<Vector<Object>> a_fieldInformation, HashMap<String, Object> a_dataHashMap) {
+        //Loop through each of the fields, and dynamically fill them in based on information from the hash map containing the data.
+        for (Vector<Object> fieldInfo : a_fieldInformation) {
+            TextView textViewObj = (TextView) fieldInfo.get(0);
+            String key = (String) fieldInfo.get(1);
+            Boolean partialBold = (Boolean) fieldInfo.get(2);
+
+            //Extract the value that the field should be set to.
+            String fieldValue;
+            if (a_dataHashMap.get(key) instanceof Double) {
+                //Ensure that fields that are doubles are rounded to their correct number of decimal places.
+                String numDigitsToRound = fieldInfo.get(3).toString();
+                fieldValue = String.format("%." + numDigitsToRound + "f", a_dataHashMap.get(key));
+            }
+            else {
+                fieldValue = String.valueOf(a_dataHashMap.get(key));
+            }
+
+            //If this is a single line column (ex: stadium column), make sure the first part of the text is bolded ("ex: Stadium:").
+            if (partialBold) {
+                textViewObj.setText(WidgetUtilities.MakePartialTextBold((String) textViewObj.getText(), fieldValue));
+            }
+            else
+            {
+                textViewObj.setText(fieldValue);
+            }
+        }
+    }
+
     //Helper function to get the file name of a team logo.
     private static String GetLogoName(String a_teamName) {
         //Remove any periods from the team name (if they exist).

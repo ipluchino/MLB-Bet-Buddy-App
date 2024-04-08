@@ -50,8 +50,6 @@ public class ScheduleActivity extends AppCompatActivity {
         //Attempt to query the server for the schedule information. This is done on a separate thread, not the main thread.
         m_games = WidgetUtilities.GetData(SCHEDULE_TABLE_NAME);
 
-        //Determine what ordering to order the games in based on the user's initial choice.
-
         //If no games are returned from the server, display a message alerting the user.
         if (m_games.isEmpty()) {
             //Make some of the components invisible.

@@ -152,10 +152,26 @@ public class NRFIYRFIActivity extends AppCompatActivity {
         //Set the date for the NRFI/YRFI table.
         m_dateTextView.setText((String) m_games.get(0).get("Date"));
 
+        //Remove all the rows, if any already exist (for when changing bet types).
+        m_tableLayout.removeAllViews();
+
         //Loop through each of the bet predictions.
         for (HashMap<String, Object> game : m_games) {
             //Create a new table row.
             TableRow tableRow = new TableRow(this);
+
+            //Create OnClickListener for the entire TableRow. This will view the NRFI or YRFI bet prediction in more detail when clicked.
+            tableRow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Switch to the NRFI/YRFI details state.
+                    Intent intent = new Intent(getApplicationContext(), NRFIYRFIDetailsActivity.class);
+
+                    //Pass the bet prediction details to the NRFIYRFIDetails Activity.
+                    intent.putExtra("betDetails", game);
+                    startActivity(intent);
+                }
+            });
 
             //Create the away team logo and abbreviation.
             String awayTeamName = (String) game.get("Away Team Name");
@@ -171,7 +187,7 @@ public class NRFIYRFIActivity extends AppCompatActivity {
             //Create the home team logo and abbreviation.
             String homeTeamName = (String) game.get("Home Team Name");
             ImageView homeTeamLogo = WidgetUtilities.CreateTeamLogo(this, homeTeamName, 150, 150, 10, 20, 20, 20);
-            TextView homeTeamAbbreviation = WidgetUtilities.CreateTextView(this, BetPredictorModel.TEAM_ABBREVIATION.get(homeTeamName), 15, 0, 50, 50, 20);
+            TextView homeTeamAbbreviation = WidgetUtilities.CreateTextView(this, BetPredictorModel.TEAM_ABBREVIATION.get(homeTeamName), 15, 0, 50, 40, 20);
             tableRow.addView(homeTeamLogo);
             tableRow.addView(homeTeamAbbreviation);
 
@@ -179,9 +195,14 @@ public class NRFIYRFIActivity extends AppCompatActivity {
             TimeZone localTimezone = TimeZone.getDefault();
             String UTCGameTime = (String) game.get("DateTime String");
             String localGameTime = m_BPModelObj.ConvertToTimezone(UTCGameTime, localTimezone.getID());
-            TextView gameTime = WidgetUtilities.CreateTextView(this, localGameTime, 15, 0, 50, 80, 20);
+            TextView gameTime = WidgetUtilities.CreateTextView(this, localGameTime, 15, 0, 50, 45, 20);
             tableRow.addView(gameTime);
 
+            //Create the NRFI or YRFI score. Note: All scores are stored in the database as "Overall NRFI Score". Low NRFI scores are good for NRFI, and high NRFI scores are good for YRFI.
+            String roundedScore = String.format("%.3f", game.get("Overall NRFI Score"));
+            String betScore = "Score: " + roundedScore;
+            TextView betChoice = WidgetUtilities.CreateTextView(this, betScore, 15, 0, 50, 0, 20);
+            tableRow.addView(betChoice);
 
             m_tableLayout.addView(tableRow);
         }

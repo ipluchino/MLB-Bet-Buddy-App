@@ -30,12 +30,9 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
     private Button m_backButton;
     private TextView m_titleTextView;
     private TextView m_dateTextView;
-    private TextView m_homeTeamNameTextView;
-    private TextView m_awayTeamNameTextView;
-    private TextView m_homeTeamRecordTextView;
-    private TextView m_awayTeamRecordTextView;
-    private TextView m_homeStartingPitcherTextView;
-    private TextView m_awayStartingPitcherTextView;
+    private TextView m_homeTeamNameTextView, m_awayTeamNameTextView;
+    private TextView m_homeTeamRecordTextView, m_awayTeamRecordTextView;
+    private TextView m_homeStartingPitcherTextView, m_awayStartingPitcherTextView;
     private TextView m_localTimeTextView;
     private TextView m_stadiumTextView;
     private TextView m_ballParkFactorTextView;
@@ -68,8 +65,6 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
         m_temperatureTextView = findViewById(R.id.temperatureSchedule);
         m_windSpeedTextView = findViewById(R.id.windSpeedSchedule);
 
-        //If no game information was sent to this screen, there must have been an error so alert the user.
-
         //Set all of the onClick listeners for the buttons.
         m_backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +74,8 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //If no game information was sent to this screen, there must have been an error so alert the user.
 
         //Fill in the schedule table.
         FillGameDetails();
