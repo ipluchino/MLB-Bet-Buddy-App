@@ -22,6 +22,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.HashMap;
 import java.util.TimeZone;
+import java.util.Vector;
 
 public class ScheduleDetailsActivity extends AppCompatActivity {
     //Private variables
@@ -77,39 +78,44 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
 
         //If no game information was sent to this screen, there must have been an error so alert the user.
 
+        //A vector of vectors containing all of the required information to fill in the schedule details table.
+        //FORMAT: TextView object, key in hashmap of schedule information, and whether or not the text should be partially bolded (for single columns lines).
+        //There is an additional column for fields that are doubles, used to determine the number of decimal places to round to.
+        //Assistance: https://stackoverflow.com/questions/66844568/how-to-initialize-a-vector-with-values-in-java
+        Vector<Vector<Object>> fieldInformation = new Vector<Vector<Object>>() {{
+            add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false);} });
+            add(new Vector<Object>() { { add(m_homeTeamNameTextView); add("Home Team Name"); add(false);} });
+            add(new Vector<Object>() { { add(m_awayTeamNameTextView); add("Away Team Name"); add(false);} });
+            add(new Vector<Object>() { { add(m_homeTeamRecordTextView); add("Home Team Record"); add(false);} });
+            add(new Vector<Object>() { { add(m_awayTeamRecordTextView); add("Away Team Record"); add(false);} });
+            add(new Vector<Object>() { { add(m_homeStartingPitcherTextView); add("Home Team Probable Pitcher Name"); add(false);} });
+            add(new Vector<Object>() { { add(m_awayStartingPitcherTextView); add("Away Team Probable Pitcher Name"); add(false);} });
+            add(new Vector<Object>() { { add(m_stadiumTextView); add("Stadium"); add(true);} });
+            add(new Vector<Object>() { { add(m_ballParkFactorTextView); add("Ballpark Factor"); add(true); add(0);} });
+            add(new Vector<Object>() { { add(m_weatherDescriptionTextView); add("Weather Description"); add(true);} });
+            add(new Vector<Object>() { { add(m_temperatureTextView); add("Temperature"); add(true);} });
+            add(new Vector<Object>() { { add(m_windSpeedTextView); add("Wind Speed"); add(true);} });
+        }};
+
         //Fill in the schedule table.
-        FillGameDetails();
+        FillGameDetails(fieldInformation);
     }
 
     //Fill in the specific game details into the
     @SuppressLint("SetTextI18n")
-    private void FillGameDetails() {
-        //Set the title and date.
+    private void FillGameDetails(Vector<Vector<Object>> a_fieldInformation) {
+        //Set the fields that require additional processing.
         String homeTeamName = (String) m_gameDetails.get("Home Team Name");
         String homeTeamAbbreviation = BetPredictorModel.TEAM_ABBREVIATION.get(homeTeamName);
         String awayTeamName = (String) m_gameDetails.get("Away Team Name");
         String awayTeamAbbreviation = BetPredictorModel.TEAM_ABBREVIATION.get(awayTeamName);
-
         m_titleTextView.setText(homeTeamAbbreviation + " @ " + awayTeamAbbreviation);
-        m_dateTextView.setText((String) m_gameDetails.get("Date"));
 
-        //Set the team information for both teams.
-        m_homeTeamNameTextView.setText(homeTeamName);
-        m_awayTeamNameTextView.setText(awayTeamName);
-
-        m_homeTeamRecordTextView.setText((String) m_gameDetails.get("Home Team Record"));
-        m_awayTeamRecordTextView.setText((String) m_gameDetails.get("Away Team Record"));
-
-        m_homeStartingPitcherTextView.setText((String) m_gameDetails.get("Home Team Probable Pitcher Name"));
-        m_awayStartingPitcherTextView.setText((String) m_gameDetails.get("Away Team Probable Pitcher Name"));
-
-        //Set the local factors information
+        //Set the local time.
         String localGameTime = m_BPModelObj.ConvertToTimezone((String) m_gameDetails.get("DateTime String"), TimeZone.getDefault().getID());
         m_localTimeTextView.setText(WidgetUtilities.MakePartialTextBold("Local Time: ", localGameTime));
-        m_stadiumTextView.setText(WidgetUtilities.MakePartialTextBold("Stadium: ", (String) m_gameDetails.get("Stadium")));
-        m_ballParkFactorTextView.setText(WidgetUtilities.MakePartialTextBold("Ballpark Factor: ", String.valueOf(m_gameDetails.get("Ballpark Factor"))));
-        m_weatherDescriptionTextView.setText(WidgetUtilities.MakePartialTextBold("Weather: ", (String) m_gameDetails.get("Weather Description")));
-        m_temperatureTextView.setText(WidgetUtilities.MakePartialTextBold("Temperature: ", (String) m_gameDetails.get("Temperature")));
-        m_windSpeedTextView.setText(WidgetUtilities.MakePartialTextBold("Wind Speed: ", (String) m_gameDetails.get("Wind Speed")));
+
+        //Fill the remaining fields in.
+        WidgetUtilities.FillInTableTextViews(a_fieldInformation, m_gameDetails);
     }
 }

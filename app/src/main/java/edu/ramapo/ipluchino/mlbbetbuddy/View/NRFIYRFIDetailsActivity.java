@@ -140,7 +140,7 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
             add(new Vector<Object>() { { add(m_weatherDescriptionTextView); add("Weather Description"); add(true);} });
             add(new Vector<Object>() { { add(m_temperatureTextView); add("Temperature"); add(true);} });
             add(new Vector<Object>() { { add(m_windSpeedTextView); add("Wind Speed"); add(true);} });
-            add(new Vector<Object>() { { add(m_overallBetScore); add("Overall NRFI Score"); add(true); add(5);} });
+            add(new Vector<Object>() { { add(m_overallBetScore); add("Overall NRFI Score"); add(true); add(3);} });
         }};
 
         //Fill in the NRFI/YRFI table.
@@ -163,6 +163,7 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
 
         //Set the YRFI%s?
 
+        //Fill the remaining fields in.
         WidgetUtilities.FillInTableTextViews(a_fieldInformation, m_betDetails);
     }
 }
