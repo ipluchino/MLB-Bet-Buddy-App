@@ -1,23 +1,12 @@
 package edu.ramapo.ipluchino.mlbbetbuddy.View;
 
-import android.Manifest;
-
 import edu.ramapo.ipluchino.mlbbetbuddy.Model.BetPredictorModel;
 import edu.ramapo.ipluchino.mlbbetbuddy.R;
-
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.HashMap;
@@ -34,7 +23,7 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
     private TextView m_homeTeamNameTextView, m_awayTeamNameTextView;
     private TextView m_homeTeamRecordTextView, m_awayTeamRecordTextView;
     private TextView m_homeStartingPitcherTextView, m_awayStartingPitcherTextView;
-    private TextView m_localTimeTextView;
+    private TextView m_localGameTimeTextView;
     private TextView m_stadiumTextView;
     private TextView m_ballParkFactorTextView;
     private TextView m_weatherDescriptionTextView;
@@ -59,7 +48,7 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
         m_awayTeamRecordTextView = findViewById(R.id.awayTeamRecordSchedule);
         m_homeStartingPitcherTextView = findViewById(R.id.homeTeamStartingPitcherSchedule);
         m_awayStartingPitcherTextView = findViewById(R.id.awayTeamStartingPitcherSchedule);
-        m_localTimeTextView = findViewById(R.id.localTimeSchedule);
+        m_localGameTimeTextView = findViewById(R.id.localTimeSchedule);
         m_stadiumTextView = findViewById(R.id.stadiumSchedule);
         m_ballParkFactorTextView = findViewById(R.id.ballparkFactorSchedule);
         m_weatherDescriptionTextView = findViewById(R.id.weatherDescriptionSchedule);
@@ -80,7 +69,7 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
 
         //A vector of vectors containing all of the required information to fill in the schedule details table.
         //FORMAT: TextView object, key in hashmap of schedule information, and whether or not the text should be partially bolded (for single columns lines).
-        //There is an additional column for fields that are doubles, used to determine the number of decimal places to round to.
+        //There is an additional entry for fields that are doubles, used to determine the number of decimal places to round to.
         //Assistance: https://stackoverflow.com/questions/66844568/how-to-initialize-a-vector-with-values-in-java
         Vector<Vector<Object>> fieldInformation = new Vector<Vector<Object>>() {{
             add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false);} });
@@ -113,7 +102,7 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
 
         //Set the local time.
         String localGameTime = m_BPModelObj.ConvertToTimezone((String) m_gameDetails.get("DateTime String"), TimeZone.getDefault().getID());
-        m_localTimeTextView.setText(WidgetUtilities.MakePartialTextBold("Local Time: ", localGameTime));
+        m_localGameTimeTextView.setText(WidgetUtilities.MakePartialTextBold("Game Time: ", localGameTime));
 
         //Fill the remaining fields in.
         WidgetUtilities.FillInTableTextViews(a_fieldInformation, m_gameDetails);

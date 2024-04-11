@@ -3,7 +3,6 @@ package edu.ramapo.ipluchino.mlbbetbuddy.View;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -37,7 +36,7 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
     private TextView m_homeTeamKRateTextView, m_awayTeamKRateTextView;
     private TextView m_homeTeamHomerRateTextView, m_awayTeamHomerRateTextView;
     private TextView m_homeTeamYRFIPercentageTextView, m_awayTeamYRFIPercentageTextView;
-    private TextView m_localTimeTextView;
+    private TextView m_localGameTimeTextView;
     private TextView m_stadiumTextView;
     private TextView m_ballParkFactorTextView;
     private TextView m_weatherDescriptionTextView;
@@ -83,7 +82,7 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
         m_awayTeamHomerRateTextView = findViewById(R.id.awayTeamHomerRate);
         m_homeTeamYRFIPercentageTextView = findViewById(R.id.homeTeamYRFIPercentage);
         m_awayTeamYRFIPercentageTextView = findViewById(R.id.awayTeamYRFIPercentage);
-        m_localTimeTextView = findViewById(R.id.localTimeNRFIYRFI);
+        m_localGameTimeTextView = findViewById(R.id.localTimeNRFIYRFI);
         m_stadiumTextView = findViewById(R.id.stadiumNRFIYRFI);
         m_ballParkFactorTextView = findViewById(R.id.ballparkFactorNRFIYRFI);
         m_weatherDescriptionTextView = findViewById(R.id.weatherDescriptionNRFIYRFI);
@@ -105,7 +104,7 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
 
         //A vector of vectors containing all of the required information to fill in the bet details table.
         //FORMAT: TextView object, key in hashmap of bet information, and whether or not the text should be partially bolded (for single columns lines).
-        //There is an additional column for fields that are doubles, used to determine the number of decimal places to round to.
+        //There is an additional entry for fields that are doubles, used to determine the number of decimal places to round to.
         //Assistance: https://stackoverflow.com/questions/66844568/how-to-initialize-a-vector-with-values-in-java
         Vector<Vector<Object>> fieldInformation = new Vector<Vector<Object>>() {{
             add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false);} });
@@ -159,7 +158,7 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
 
         //Set the local time.
         String localGameTime = m_BPModelObj.ConvertToTimezone((String) m_betDetails.get("DateTime String"), TimeZone.getDefault().getID());
-        m_localTimeTextView.setText(WidgetUtilities.MakePartialTextBold("Local Time: ", localGameTime));
+        m_localGameTimeTextView.setText(WidgetUtilities.MakePartialTextBold("Game Time: ", localGameTime));
 
         //Set the YRFI%s?
 
