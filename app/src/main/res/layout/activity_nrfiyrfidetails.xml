@@ -55,7 +55,7 @@
         android:overScrollMode="never">
 
         <TableLayout
-            android:id="@+id/scheduleTable"
+            android:id="@+id/NRFIYRFIDetailsTable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,15 +64,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:showDividers="middle"
             android:divider="@drawable/divider">
-
-            <!--Empty row so that divider at the top is drawn-->
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:showDividers="middle"
-                android:divider="@drawable/divider">
-
-            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -83,7 +74,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Pitcher Statistics"
+                    android:text="Pitcher Stats"
                     android:textColor="@color/black"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -502,7 +493,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Team Offensive Statistics"
+                    android:text="Team Offensive Stats"
                     android:textColor="@color/black"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -781,10 +772,28 @@
                 android:paddingBottom="10dp">
 
                 <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Local Factors"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="30sp"
+                    android:textStyle="bold"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
                     android:id="@+id/localTimeNRFIYRFI"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Local Time: "
+                    android:text="Game Time: "
                     android:textColor="@color/black"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -892,7 +901,7 @@
                     android:id="@+id/overallBetScore"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Overall NRFI Score: "
+                    android:text="Overall Bet Score: "
                     android:textColor="@color/black"
                     android:layout_weight="1"
                     android:gravity="center"

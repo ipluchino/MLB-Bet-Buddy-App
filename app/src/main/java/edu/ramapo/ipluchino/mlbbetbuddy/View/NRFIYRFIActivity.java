@@ -1,15 +1,9 @@
 package edu.ramapo.ipluchino.mlbbetbuddy.View;
 
-import android.Manifest;
-
 import edu.ramapo.ipluchino.mlbbetbuddy.Model.BetPredictorModel;
 import edu.ramapo.ipluchino.mlbbetbuddy.R;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +15,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import java.io.IOException;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Objects;
@@ -34,7 +28,7 @@ public class NRFIYRFIActivity extends AppCompatActivity {
 
     //Private variables
     private BetPredictorModel m_BPModelObj;
-    private Vector<HashMap<String, Object>> m_games;
+    private Vector<HashMap<String, Object>> m_NRFIYRFIBetPredictions;
     private TableLayout m_tableLayout;
     private Spinner m_betChoiceSpinner;
     private TextView m_dateTextView;
@@ -55,14 +49,14 @@ public class NRFIYRFIActivity extends AppCompatActivity {
         m_homeButton = findViewById(R.id.homeButtonMRFIYRFI);
 
         //Attempt to query the server for the NRFI/YRFI information. This is done on a separate thread, not the main thread.
-        m_games = WidgetUtilities.GetData(NRFIYRFI_TABLE_NAME);
+        m_NRFIYRFIBetPredictions = WidgetUtilities.GetData(NRFIYRFI_TABLE_NAME);
 
         //Determine the initial ordering of the bets.
         //Assistance: https://www.geeksforgeeks.org/reverse-order-of-all-elements-of-java-vector/
         //Assistance: https://stackoverflow.com/questions/11072576/set-selected-item-of-spinner-programmatically
         if (Objects.equals(getIntent().getStringExtra("betChoice"), "YRFI")) {
             //If the initial ordering if "YRFI", the order of the games vector needs to be reversed since the games are returned by the server in NRFI order by default.
-            Collections.reverse(m_games);
+            Collections.reverse(m_NRFIYRFIBetPredictions);
 
             //Set the choice in the spinner as well to match.
             m_betChoiceSpinner.setSelection(1);
@@ -73,7 +67,7 @@ public class NRFIYRFIActivity extends AppCompatActivity {
         }
 
         //If no games are returned from the server, display a message alerting the user.
-        if (m_games.isEmpty()) {
+        if (m_NRFIYRFIBetPredictions.isEmpty()) {
             //Make some of the components invisible.
             m_homeButton.setVisibility(View.GONE);
             m_dateTextView.setVisibility(View.GONE);
@@ -109,7 +103,7 @@ public class NRFIYRFIActivity extends AppCompatActivity {
                     else
                     {
                         m_betChoice = "NRFI";
-                        Collections.reverse(m_games);
+                        Collections.reverse(m_NRFIYRFIBetPredictions);
                         FillNRFIYRFITable();
                     }
                 }
@@ -124,7 +118,7 @@ public class NRFIYRFIActivity extends AppCompatActivity {
                         else
                         {
                             m_betChoice = "YRFI";
-                            Collections.reverse(m_games);
+                            Collections.reverse(m_NRFIYRFIBetPredictions);
                             FillNRFIYRFITable();
                         }
                     }
@@ -138,25 +132,25 @@ public class NRFIYRFIActivity extends AppCompatActivity {
 
         });
 
-        //Fill in the schedule table for the first time.
+        //Fill in the NRFI/YRFI table for the first time.
         FillNRFIYRFITable();
     }
 
 
     //Fills in the NRFI/YRFI table dynamically.
     private void FillNRFIYRFITable() {
-        if(m_games.isEmpty()) {
+        if(m_NRFIYRFIBetPredictions.isEmpty()) {
             return;
         }
 
         //Set the date for the NRFI/YRFI table.
-        m_dateTextView.setText((String) m_games.get(0).get("Date"));
+        m_dateTextView.setText((String) m_NRFIYRFIBetPredictions.get(0).get("Date"));
 
         //Remove all the rows, if any already exist (for when changing bet types).
         m_tableLayout.removeAllViews();
 
         //Loop through each of the bet predictions.
-        for (HashMap<String, Object> game : m_games) {
+        for (HashMap<String, Object> betPrediction : m_NRFIYRFIBetPredictions) {
             //Create a new table row.
             TableRow tableRow = new TableRow(this);
 
@@ -168,13 +162,13 @@ public class NRFIYRFIActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), NRFIYRFIDetailsActivity.class);
 
                     //Pass the bet prediction details to the NRFIYRFIDetails Activity.
-                    intent.putExtra("betDetails", game);
+                    intent.putExtra("betDetails", betPrediction);
                     startActivity(intent);
                 }
             });
 
             //Create the away team logo and abbreviation.
-            String awayTeamName = (String) game.get("Away Team Name");
+            String awayTeamName = (String) betPrediction.get("Away Team Name");
             ImageView awayTeamLogo = WidgetUtilities.CreateTeamLogo(this, awayTeamName, 150, 150, 30, 20, 20, 20);
             TextView awayTeamAbbreviation = WidgetUtilities.CreateTextView(this, BetPredictorModel.TEAM_ABBREVIATION.get(awayTeamName), 15, 0, 50, 20, 20);
             tableRow.addView(awayTeamLogo);
@@ -185,7 +179,7 @@ public class NRFIYRFIActivity extends AppCompatActivity {
             tableRow.addView(atSign);
 
             //Create the home team logo and abbreviation.
-            String homeTeamName = (String) game.get("Home Team Name");
+            String homeTeamName = (String) betPrediction.get("Home Team Name");
             ImageView homeTeamLogo = WidgetUtilities.CreateTeamLogo(this, homeTeamName, 150, 150, 10, 20, 20, 20);
             TextView homeTeamAbbreviation = WidgetUtilities.CreateTextView(this, BetPredictorModel.TEAM_ABBREVIATION.get(homeTeamName), 15, 0, 50, 40, 20);
             tableRow.addView(homeTeamLogo);
@@ -193,13 +187,13 @@ public class NRFIYRFIActivity extends AppCompatActivity {
 
             //Set the local time of the game based on the timezone.
             TimeZone localTimezone = TimeZone.getDefault();
-            String UTCGameTime = (String) game.get("DateTime String");
+            String UTCGameTime = (String) betPrediction.get("DateTime String");
             String localGameTime = m_BPModelObj.ConvertToTimezone(UTCGameTime, localTimezone.getID());
-            TextView gameTime = WidgetUtilities.CreateTextView(this, localGameTime, 15, 0, 50, 45, 20);
+            TextView gameTime = WidgetUtilities.CreateTextView(this, localGameTime, 15, 0, 50, 25, 20);
             tableRow.addView(gameTime);
 
             //Create the NRFI or YRFI score. Note: All scores are stored in the database as "Overall NRFI Score". Low NRFI scores are good for NRFI, and high NRFI scores are good for YRFI.
-            String roundedScore = String.format("%.3f", game.get("Overall NRFI Score"));
+            String roundedScore = String.format("%.3f", (Double) betPrediction.get("Overall NRFI Score") * 100.0);
             String betScore = "Score: " + roundedScore;
             TextView betChoice = WidgetUtilities.CreateTextView(this, betScore, 15, 0, 50, 0, 20);
             tableRow.addView(betChoice);
