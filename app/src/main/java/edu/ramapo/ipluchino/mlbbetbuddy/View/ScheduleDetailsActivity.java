@@ -68,22 +68,22 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
         //If no game information was sent to this screen, there must have been an error so alert the user.
 
         //A vector of vectors containing all of the required information to fill in the schedule details table.
-        //FORMAT: TextView object, key in hashmap of schedule information, and whether or not the text should be partially bolded (for single columns lines).
+        //FORMAT: TextView object, key in hashmap for schedule information, and whether or not the text should be partially bolded (for single columns lines).
         //There is an additional entry for fields that are doubles, used to determine the number of decimal places to round to.
         //Assistance: https://stackoverflow.com/questions/66844568/how-to-initialize-a-vector-with-values-in-java
         Vector<Vector<Object>> fieldInformation = new Vector<Vector<Object>>() {{
-            add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false);} });
-            add(new Vector<Object>() { { add(m_homeTeamNameTextView); add("Home Team Name"); add(false);} });
-            add(new Vector<Object>() { { add(m_awayTeamNameTextView); add("Away Team Name"); add(false);} });
-            add(new Vector<Object>() { { add(m_homeTeamRecordTextView); add("Home Team Record"); add(false);} });
-            add(new Vector<Object>() { { add(m_awayTeamRecordTextView); add("Away Team Record"); add(false);} });
-            add(new Vector<Object>() { { add(m_homeStartingPitcherTextView); add("Home Team Probable Pitcher Name"); add(false);} });
-            add(new Vector<Object>() { { add(m_awayStartingPitcherTextView); add("Away Team Probable Pitcher Name"); add(false);} });
-            add(new Vector<Object>() { { add(m_stadiumTextView); add("Stadium"); add(true);} });
+            add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false); add(null);} });
+            add(new Vector<Object>() { { add(m_homeTeamNameTextView); add("Home Team Name"); add(false); add(null);} });
+            add(new Vector<Object>() { { add(m_awayTeamNameTextView); add("Away Team Name"); add(false); add(null);} });
+            add(new Vector<Object>() { { add(m_homeTeamRecordTextView); add("Home Team Record"); add(false); add(null);} });
+            add(new Vector<Object>() { { add(m_awayTeamRecordTextView); add("Away Team Record"); add(false); add(null);} });
+            add(new Vector<Object>() { { add(m_homeStartingPitcherTextView); add("Home Team Probable Pitcher Name"); add(false); add(null);} });
+            add(new Vector<Object>() { { add(m_awayStartingPitcherTextView); add("Away Team Probable Pitcher Name"); add(false); add(null);} });
+            add(new Vector<Object>() { { add(m_stadiumTextView); add("Stadium"); add(true); add(null);} });
             add(new Vector<Object>() { { add(m_ballParkFactorTextView); add("Ballpark Factor"); add(true); add(0);} });
-            add(new Vector<Object>() { { add(m_weatherDescriptionTextView); add("Weather Description"); add(true);} });
-            add(new Vector<Object>() { { add(m_temperatureTextView); add("Temperature"); add(true);} });
-            add(new Vector<Object>() { { add(m_windSpeedTextView); add("Wind Speed"); add(true);} });
+            add(new Vector<Object>() { { add(m_weatherDescriptionTextView); add("Weather Description"); add(true); add(null);} });
+            add(new Vector<Object>() { { add(m_temperatureTextView); add("Temperature"); add(true); add(null);} });
+            add(new Vector<Object>() { { add(m_windSpeedTextView); add("Wind Speed"); add(true); add(null);} });
         }};
 
         //Fill in the schedule table.

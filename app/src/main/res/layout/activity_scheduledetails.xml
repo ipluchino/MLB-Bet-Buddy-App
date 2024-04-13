@@ -284,7 +284,8 @@
                     android:textColor="@color/black"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:tooltipText="The stadium's impact on run generation. 100 is the average, meaning no impact."/>
 
             </TableRow>
 

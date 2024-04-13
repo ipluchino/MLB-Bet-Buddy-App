@@ -283,7 +283,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textSize="28sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:tooltipText="ERA = Earned Run Average. The average runs a pitcher lets up in 9 innings."/>
 
                 <TextView
                     android:id="@+id/awayTeamPitcherERA"
@@ -329,7 +330,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textSize="28sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:tooltipText="WHIP = Walks and Hits per Inning Pitched."/>
 
                 <TextView
                     android:id="@+id/awayTeamPitcherWHIP"
@@ -375,7 +377,8 @@
                     android:text="Ks Per 9"
                     android:textColor="@color/black"
                     android:textSize="28sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:tooltipText="Strikeouts per 9 innings."/>
 
                 <TextView
                     android:id="@+id/awayTeamPitcherKsPer9"
@@ -467,7 +470,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textSize="28sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:tooltipText="The percentage of games a pitcher has let up a run in the first inning."/>
 
                 <TextView
                     android:id="@+id/awayTeamPitcherYRFIPercentage"
@@ -656,7 +660,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textSize="28sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:tooltipText="The percentage of at bats the team strikeouts."/>
 
                 <TextView
                     android:id="@+id/awayTeamKRate"
@@ -669,7 +674,7 @@
                     android:autoSizeTextType="uniform"
                     android:autoSizeMinTextSize="8sp"
                     android:autoSizeMaxTextSize="19sp"
-                    android:maxLines="1" />
+                    android:maxLines="1"/>
 
             </TableRow>
 
@@ -702,7 +707,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textSize="28sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:tooltipText="The percentage of at bats the team hits a homerun."/>
 
                 <TextView
                     android:id="@+id/awayTeamHomerRate"
@@ -748,7 +754,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textSize="28sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:tooltipText="The percentage of games a team has let up a run in the first inning."/>
 
                 <TextView
                     android:id="@+id/awayTeamYRFIPercentage"
@@ -833,7 +840,8 @@
                     android:textColor="@color/black"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:tooltipText="The stadium's impact on run generation. 100 is the average, meaning no impact."/>
 
             </TableRow>
 
