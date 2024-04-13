@@ -111,13 +111,13 @@ public class HittingActivity extends AppCompatActivity {
             TimeZone localTimezone = TimeZone.getDefault();
             String UTCGameTime = (String) betPrediction.get("DateTime String");
             String localGameTime = m_BPModelObj.ConvertToTimezone(UTCGameTime, localTimezone.getID());
-            TextView gameTime = WidgetUtilities.CreateTextView(this, localGameTime, 15, 0, 50, 55, 20);
+            TextView gameTime = WidgetUtilities.CreateTextView(this, localGameTime, 15, 0, 50, 90, 20);
             tableRow.addView(gameTime);
 
             //Create the hitting bet score.
-            String roundedScore = String.format("%.3f", betPrediction.get("Overall Hitting Score"));
-            String betScore = "Score: " + roundedScore;
-            TextView betChoice = WidgetUtilities.CreateTextView(this, betScore, 15, 0, 50, 0, 20);
+            String roundedScore = String.format("%.1f", betPrediction.get("Overall Hitting Score"));
+            TextView betChoice = WidgetUtilities.CreateTextView(this, "", 15, 0, 50, 0, 20);
+            betChoice.setText(WidgetUtilities.MakePartialTextBold("Score: ", roundedScore));
             tableRow.addView(betChoice);
 
             //Add the row into the table.

@@ -116,7 +116,7 @@ public class ScheduleActivity extends AppCompatActivity {
             //Create the home team logo and abbreviation.
             String homeTeamName = (String) game.get("Home Team Name");
             ImageView homeTeamLogo = WidgetUtilities.CreateTeamLogo(this, homeTeamName, 150, 150, 10, 20, 20, 20);
-            TextView homeTeamAbbreviation = WidgetUtilities.CreateTextView(this, BetPredictorModel.TEAM_ABBREVIATION.get(homeTeamName), 15, 0, 50, 50, 20);
+            TextView homeTeamAbbreviation = WidgetUtilities.CreateTextView(this, BetPredictorModel.TEAM_ABBREVIATION.get(homeTeamName), 15, 0, 50, 70, 20);
             tableRow.addView(homeTeamLogo);
             tableRow.addView(homeTeamAbbreviation);
 
@@ -124,12 +124,12 @@ public class ScheduleActivity extends AppCompatActivity {
             TimeZone localTimezone = TimeZone.getDefault();
             String UTCGameTime = (String) game.get("DateTime String");
             String localGameTime = m_BPModelObj.ConvertToTimezone(UTCGameTime, localTimezone.getID());
-            TextView gameTime = WidgetUtilities.CreateTextView(this, localGameTime, 15, 0, 50, 80, 20);
+            TextView gameTime = WidgetUtilities.CreateTextView(this, localGameTime, 15, 0, 50, 100, 20);
             tableRow.addView(gameTime);
 
             //Create the weather icon for the game.
             String weatherDescription = (String) game.get("Weather Description");
-            ImageView weatherIcon = WidgetUtilities.CreateWeatherIcon(this, weatherDescription, 150, 150, 10, 20, 20, 20);
+            ImageView weatherIcon = WidgetUtilities.CreateWeatherIcon(this, weatherDescription, 150, 150, 0, 20, 0, 20);
             tableRow.addView(weatherIcon);
 
             //Add the row into the table.

@@ -155,7 +155,8 @@
                     android:gravity="center"
                     android:maxLines="2"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
+                    android:paddingBottom="10dp"
+                    android:tooltipText="BA = Batting Average."/>
 
                 <TextView
                     android:id="@+id/seasonOBP"
@@ -168,7 +169,8 @@
                     android:gravity="center"
                     android:maxLines="2"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
+                    android:paddingBottom="10dp"
+                    android:tooltipText="OBP = On Base Percentage."/>
 
             </TableRow>
 
@@ -202,7 +204,8 @@
                     android:gravity="center"
                     android:maxLines="2"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
+                    android:paddingBottom="10dp"
+                    android:tooltipText="OPS = On base percentage Plus Slugging."/>
 
             </TableRow>
 
@@ -223,7 +226,8 @@
                     android:gravity="center"
                     android:maxLines="2"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
+                    android:paddingBottom="10dp"
+                    android:tooltipText="The hitter's batting average when facing left-handed pitching."/>
 
                 <TextView
                     android:id="@+id/seasonVsRightBA"
@@ -236,7 +240,8 @@
                     android:gravity="center"
                     android:maxLines="2"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
+                    android:paddingBottom="10dp"
+                    android:tooltipText="The hitter's batting average when facing right-handed pitching."/>
 
             </TableRow>
 
@@ -329,7 +334,8 @@
                     android:gravity="center"
                     android:maxLines="2"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
+                    android:paddingBottom="10dp"
+                    android:tooltipText="The average batting average of left-handed hitters against this pitcher."/>
 
                 <TextView
                     android:id="@+id/seasonVsRightBAA"
@@ -342,7 +348,8 @@
                     android:gravity="center"
                     android:maxLines="2"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
+                    android:paddingBottom="10dp"
+                    android:tooltipText="The average batting average of right-handed hitters against this pitcher."/>
 
             </TableRow>
 
@@ -399,7 +406,8 @@
                     android:gravity="center"
                     android:maxLines="2"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
+                    android:paddingBottom="10dp"
+                    android:tooltipText="BA = Batting Average."/>
 
                 <TextView
                     android:id="@+id/careerAgainstOPS"
@@ -412,7 +420,8 @@
                     android:gravity="center"
                     android:maxLines="2"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
+                    android:paddingBottom="10dp"
+                    android:tooltipText="OPS = On base percentage Plus Slugging."/>
 
             </TableRow>
 
@@ -487,7 +496,8 @@
                     android:gravity="center"
                     android:maxLines="2"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
+                    android:paddingBottom="10dp"
+                    android:tooltipText="BA = Batting Average."/>
 
                 <TextView
                     android:id="@+id/Last10OPS"
@@ -500,7 +510,8 @@
                     android:gravity="center"
                     android:maxLines="2"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
+                    android:paddingBottom="10dp"
+                    android:tooltipText="OPS = On base percentage Plus Slugging."/>
 
             </TableRow>
 
@@ -590,7 +601,8 @@
                     android:textColor="@color/black"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:tooltipText="The stadium's impact on run generation. 100 is the average, meaning no impact."/>
 
             </TableRow>
 

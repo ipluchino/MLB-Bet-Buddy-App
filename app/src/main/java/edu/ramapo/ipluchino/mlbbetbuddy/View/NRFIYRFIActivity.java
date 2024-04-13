@@ -161,8 +161,9 @@ public class NRFIYRFIActivity extends AppCompatActivity {
                     //Switch to the NRFI/YRFI details state.
                     Intent intent = new Intent(getApplicationContext(), NRFIYRFIDetailsActivity.class);
 
-                    //Pass the bet prediction details to the NRFIYRFIDetails Activity.
+                    //Pass the bet details and bet choice to the NRFIYRFIDetails Activity.
                     intent.putExtra("betDetails", betPrediction);
+                    intent.putExtra("betChoice", m_betChoice);
                     startActivity(intent);
                 }
             });
@@ -189,13 +190,13 @@ public class NRFIYRFIActivity extends AppCompatActivity {
             TimeZone localTimezone = TimeZone.getDefault();
             String UTCGameTime = (String) betPrediction.get("DateTime String");
             String localGameTime = m_BPModelObj.ConvertToTimezone(UTCGameTime, localTimezone.getID());
-            TextView gameTime = WidgetUtilities.CreateTextView(this, localGameTime, 15, 0, 50, 25, 20);
+            TextView gameTime = WidgetUtilities.CreateTextView(this, localGameTime, 15, 0, 50, 60, 20);
             tableRow.addView(gameTime);
 
             //Create the NRFI or YRFI score. Note: All scores are stored in the database as "Overall NRFI Score". Low NRFI scores are good for NRFI, and high NRFI scores are good for YRFI.
-            String roundedScore = String.format("%.3f", (Double) betPrediction.get("Overall NRFI Score") * 100.0);
-            String betScore = "Score: " + roundedScore;
-            TextView betChoice = WidgetUtilities.CreateTextView(this, betScore, 15, 0, 50, 0, 20);
+            String roundedScore = String.format("%.1f", (Double) betPrediction.get("Overall NRFI Score") * 100.0);
+            TextView betChoice = WidgetUtilities.CreateTextView(this, "", 15, 0, 50, 0, 20);
+            betChoice.setText(WidgetUtilities.MakePartialTextBold("Score: ", roundedScore));
             tableRow.addView(betChoice);
 
             m_tableLayout.addView(tableRow);

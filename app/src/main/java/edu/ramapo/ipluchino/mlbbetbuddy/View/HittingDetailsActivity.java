@@ -95,38 +95,38 @@ public class HittingDetailsActivity extends AppCompatActivity {
         //If no game information was sent to this screen, there must have been an error so alert the user.
 
         //A vector of vectors containing all of the required information to fill in the bet details table.
-        //FORMAT: TextView object, key in hashmap of bet information, and whether or not the text should be partially bolded (for single columns lines).
+        //FORMAT: TextView object, key in hashmap for bet information, and whether or not the text should be partially bolded (for single columns lines).
         //There is an additional entry for fields that are doubles, used to determine the number of decimal places to round to.
         //Assistance: https://stackoverflow.com/questions/66844568/how-to-initialize-a-vector-with-values-in-java
         Vector<Vector<Object>> fieldInformation = new Vector<Vector<Object>>() {{
-            add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false);} });
-            add(new Vector<Object>() { { add(m_hitterName); add("Hitter Name"); add(true);} });
-            add(new Vector<Object>() { { add(m_hitterTeam); add("Hitter Team Name"); add(true);} });
-            add(new Vector<Object>() { { add(m_batHand); add("Bat Hand"); add(true);} });
+            add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false); add(null);} });
+            add(new Vector<Object>() { { add(m_hitterName); add("Hitter Name"); add(true); add(null);} });
+            add(new Vector<Object>() { { add(m_hitterTeam); add("Hitter Team Name"); add(true); add(null);} });
+            add(new Vector<Object>() { { add(m_batHand); add("Bat Hand"); add(true); add(null);} });
             add(new Vector<Object>() { { add(m_seasonBA); add("BA"); add(true); add(3);}  });
             add(new Vector<Object>() { { add(m_seasonOBP); add("OBP"); add(true); add(3);} });
             add(new Vector<Object>() { { add(m_seasonHomers); add("Homers"); add(true); add(0);} });
             add(new Vector<Object>() { { add(m_seasonOPS); add("OPS"); add(true); add(3);} });
             add(new Vector<Object>() { { add(m_vsLeftBA); add("Vs. Left BA"); add(true); add(3);} });
             add(new Vector<Object>() { { add(m_vsRightBA); add("Vs. Right BA"); add(true); add(3);} });
-            add(new Vector<Object>() { { add(m_opposingPitcherName); add("Pitcher Name"); add(true);} });
-            add(new Vector<Object>() { { add(m_opposingPitcherTeam); add("Pitcher Team Name"); add(true);} });
-            add(new Vector<Object>() { { add(m_pitchHand); add("Pitching Hand"); add(true);} });
+            add(new Vector<Object>() { { add(m_opposingPitcherName); add("Pitcher Name"); add(true); add(null);} });
+            add(new Vector<Object>() { { add(m_opposingPitcherTeam); add("Pitcher Team Name"); add(true); add(null);} });
+            add(new Vector<Object>() { { add(m_pitchHand); add("Pitching Hand"); add(true); add(null);} });
             add(new Vector<Object>() { { add(m_vsLeftBAA); add("Vs. Left BAA"); add(true); add(3);} });
             add(new Vector<Object>() { { add(m_vsRightBAA); add("Vs. Right BAA"); add(true); add(3);} });
             add(new Vector<Object>() { { add(m_careerAgainstPA); add("Career Plate Appearances Vs. Pitcher"); add(true); add(0);} });
             add(new Vector<Object>() { { add(m_careerAgainstBA); add("Career BA Vs. Pitcher"); add(true); add(3);} });
             add(new Vector<Object>() { { add(m_careerAgainstOPS); add("Career OPS Vs. Pitcher"); add(true); add(3);} });
-            add(new Vector<Object>() { { add(m_careerAgainstHittingClassification); add("Career Stats Description"); add(true);} });
+            add(new Vector<Object>() { { add(m_careerAgainstHittingClassification); add("Career Stats Description"); add(true); add(null);} });
             add(new Vector<Object>() { { add(m_last10GamesPA); add("Last 10 Games Plate Appearances"); add(true); add(0);} });
             add(new Vector<Object>() { { add(m_last10GamesBA); add("Last 10 Games BA"); add(true); add(3);} });
             add(new Vector<Object>() { { add(m_last10GamesOPS); add("Last 10 Games OPS"); add(true); add(3);} });
-            add(new Vector<Object>() { { add(m_last10GamesHittingClassification); add("Hot/Cold Description"); add(true);} });
-            add(new Vector<Object>() { { add(m_stadiumTextView); add("Stadium"); add(true);} });
+            add(new Vector<Object>() { { add(m_last10GamesHittingClassification); add("Hot/Cold Description"); add(true); add(null);} });
+            add(new Vector<Object>() { { add(m_stadiumTextView); add("Stadium"); add(true); add(null);} });
             add(new Vector<Object>() { { add(m_ballParkFactorTextView); add("Ballpark Factor"); add(true); add(0);} });
-            add(new Vector<Object>() { { add(m_weatherDescriptionTextView); add("Weather Description"); add(true);} });
-            add(new Vector<Object>() { { add(m_temperatureTextView); add("Temperature"); add(true);} });
-            add(new Vector<Object>() { { add(m_windSpeedTextView); add("Wind Speed"); add(true);} });
+            add(new Vector<Object>() { { add(m_weatherDescriptionTextView); add("Weather Description"); add(true); add(null);} });
+            add(new Vector<Object>() { { add(m_temperatureTextView); add("Temperature"); add(true); add(null);} });
+            add(new Vector<Object>() { { add(m_windSpeedTextView); add("Wind Speed"); add(true); add(null);} });
             add(new Vector<Object>() { { add(m_overallBetScore); add("Overall Hitting Score"); add(true); add(3);} });
         }};
 

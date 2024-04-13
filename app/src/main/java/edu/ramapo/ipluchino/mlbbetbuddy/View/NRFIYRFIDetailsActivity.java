@@ -96,6 +96,10 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Navigate back to the home screen of the app.
                 Intent intent = new Intent(getApplicationContext(), NRFIYRFIActivity.class);
+
+                //Include the previous bet choice so that the initial ordering of the bets are correct again.
+                String previousBetChoice = getIntent().getStringExtra("betChoice");
+                intent.putExtra("betChoice", previousBetChoice);
                 startActivity(intent);
             }
         });
@@ -103,17 +107,17 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
         //If no game information was sent to this screen, there must have been an error so alert the user.
 
         //A vector of vectors containing all of the required information to fill in the bet details table.
-        //FORMAT: TextView object, key in hashmap of bet information, and whether or not the text should be partially bolded (for single columns lines).
+        //FORMAT: TextView object, key in hashmap for bet information, and whether or not the text should be partially bolded (for single columns lines).
         //There is an additional entry for fields that are doubles, used to determine the number of decimal places to round to.
         //Assistance: https://stackoverflow.com/questions/66844568/how-to-initialize-a-vector-with-values-in-java
         Vector<Vector<Object>> fieldInformation = new Vector<Vector<Object>>() {{
-            add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false);} });
-            add(new Vector<Object>() { { add(m_homePitcherNameTextView); add("Home Pitcher Name"); add(false);} });
-            add(new Vector<Object>() { { add(m_awayPitcherNameTextView); add("Away Pitcher Name"); add(false);} });
+            add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false); add(null);} });
+            add(new Vector<Object>() { { add(m_homePitcherNameTextView); add("Home Pitcher Name"); add(false); add(null);} });
+            add(new Vector<Object>() { { add(m_awayPitcherNameTextView); add("Away Pitcher Name"); add(false); add(null);} });
             add(new Vector<Object>() { { add(m_homePitcherGamesStartedTextView); add("Home Pitcher Games Started"); add(false); add(0);} });
             add(new Vector<Object>() { { add(m_awayPitcherGamesStartedTextView); add("Away Pitcher Games Started"); add(false); add(0);} });
-            add(new Vector<Object>() { { add(m_homePitcherRecordTextView); add("Home Pitcher Record"); add(false);} });
-            add(new Vector<Object>() { { add(m_awayPitcherRecordTextView); add("Away Pitcher Record"); add(false);} });
+            add(new Vector<Object>() { { add(m_homePitcherRecordTextView); add("Home Pitcher Record"); add(false); add(null);} });
+            add(new Vector<Object>() { { add(m_awayPitcherRecordTextView); add("Away Pitcher Record"); add(false); add(null);} });
             add(new Vector<Object>() { { add(m_homePitcherERATextView); add("Home Pitcher ERA"); add(false); add(2);} });
             add(new Vector<Object>() { { add(m_awayPitcherERATextView); add("Away Pitcher ERA"); add(false); add(2);} });
             add(new Vector<Object>() { { add(m_homePitcherWHIPTextView); add("Home Pitcher WHIP"); add(false); add(2);} });
@@ -124,8 +128,8 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
             add(new Vector<Object>() { { add(m_awayPitcherHomersPer9TextView); add("Away Pitcher Homeruns Per 9"); add(false); add(2);} });
             add(new Vector<Object>() { { add(m_homePitcherYRFIPercentageTextView); add("Home Pitcher YRFI Percentage"); add(false); add(3);} });
             add(new Vector<Object>() { { add(m_awayPitcherYRFIPercentageTextView); add("Away Pitcher YRFI Percentage"); add(false); add(3);} });
-            add(new Vector<Object>() { { add(m_homeTeamNameTextView); add("Home Team Name"); add(false);} });
-            add(new Vector<Object>() { { add(m_awayTeamNameTextView); add("Away Team Name"); add(false);} });
+            add(new Vector<Object>() { { add(m_homeTeamNameTextView); add("Home Team Name"); add(false); add(null);} });
+            add(new Vector<Object>() { { add(m_awayTeamNameTextView); add("Away Team Name"); add(false); add(null);} });
             add(new Vector<Object>() { { add(m_homeTeamBATextView); add("Home Team BA"); add(false); add(3);} });
             add(new Vector<Object>() { { add(m_awayTeamBATextView); add("Away Team BA"); add(false); add(3);} });
             add(new Vector<Object>() { { add(m_homeTeamKRateTextView); add("Home Team Strikeout Rate"); add(false); add(4);} });
@@ -134,11 +138,11 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
             add(new Vector<Object>() { { add(m_awayTeamHomerRateTextView); add("Away Team Homerun Rate"); add(false); add(4);} });
             add(new Vector<Object>() { { add(m_homeTeamYRFIPercentageTextView); add("Home Team YRFI Percentage"); add(false); add(3);} });
             add(new Vector<Object>() { { add(m_awayTeamYRFIPercentageTextView); add("Away Team YRFI Percentage"); add(false); add(3);} });
-            add(new Vector<Object>() { { add(m_stadiumTextView); add("Stadium"); add(true);} });
+            add(new Vector<Object>() { { add(m_stadiumTextView); add("Stadium"); add(true); add(null);} });
             add(new Vector<Object>() { { add(m_ballParkFactorTextView); add("Ballpark Factor"); add(true); add(0);} });
-            add(new Vector<Object>() { { add(m_weatherDescriptionTextView); add("Weather Description"); add(true);} });
-            add(new Vector<Object>() { { add(m_temperatureTextView); add("Temperature"); add(true);} });
-            add(new Vector<Object>() { { add(m_windSpeedTextView); add("Wind Speed"); add(true);} });
+            add(new Vector<Object>() { { add(m_weatherDescriptionTextView); add("Weather Description"); add(true); add(null);} });
+            add(new Vector<Object>() { { add(m_temperatureTextView); add("Temperature"); add(true); add(null);} });
+            add(new Vector<Object>() { { add(m_windSpeedTextView); add("Wind Speed"); add(true); add(null);} });
             add(new Vector<Object>() { { add(m_overallBetScore); add("Overall NRFI Score"); add(true); add(3);} });
         }};
 
