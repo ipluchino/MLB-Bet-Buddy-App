@@ -201,5 +201,8 @@ public class NRFIYRFIActivity extends AppCompatActivity {
 
             m_tableLayout.addView(tableRow);
         }
+
+        //Set the backgrounds of the top bets to gold, silver, and bronze.
+        WidgetUtilities.SetTopBets(m_tableLayout, 1, 1 ,1);
     }
 }
