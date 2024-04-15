@@ -9,8 +9,10 @@ import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import java.io.IOException;
@@ -25,6 +27,10 @@ import edu.ramapo.ipluchino.mlbbetbuddy.Model.BetPredictorModel;
 public class WidgetUtilities {
     //Constants
     private static final List<String> VALID_TABLES = Arrays.asList("TodaySchedule", "TodayNRFI", "TodayHitting", "ArchiveSchedule", "ArchiveNRFI", "ArchiveHitting");
+
+    private static final String GOLD_HEX = "#FFD700";
+    private static final String SILVER_HEX = "#C0C0C0";
+    private static final String BRONZE_HEX = "#D48231";
 
     //Creates an ImageView object that represents a team's logo.
     public static ImageView CreateTeamLogo(Context a_context, String a_teamName, int a_width, int a_height, int a_padL, int a_padT, int a_padR, int a_padB) {
@@ -160,6 +166,41 @@ public class WidgetUtilities {
                 textViewObj.setText(fieldValue);
             }
         }
+    }
+
+    //Makes a certain number of bet predictions have different backgrounds, depending on how good they are.
+    public static void SetTopBets(TableLayout a_betTable, int a_numGold, int a_numSilver, int a_numBronze) {
+        int numRows = a_betTable.getChildCount();
+
+        Log.d("test", String.valueOf(numRows));
+
+        //If there are not enough rows to color all of them, don't change any row background colors.
+        if ((a_numGold + a_numSilver + a_numBronze) > numRows) {
+            return;
+        }
+
+        //Set the desired number of top bets as gold.
+        int betIndex = 0;
+        for(;betIndex < a_numGold; betIndex++) {
+            TableRow row = (TableRow) a_betTable.getChildAt(betIndex);
+            row.setBackgroundColor(Color.parseColor(GOLD_HEX));
+        }
+
+        //Set the desired number of top bets as silver.
+        for(;betIndex < (a_numGold + a_numSilver); betIndex++) {
+            TableRow row = (TableRow) a_betTable.getChildAt(betIndex);
+            row.setBackgroundColor(Color.parseColor(SILVER_HEX));
+        }
+
+        //Set the desired number of top bets as bronze.
+        for(;betIndex < (a_numGold + a_numSilver + a_numBronze); betIndex++) {
+            TableRow row = (TableRow) a_betTable.getChildAt(betIndex);
+            row.setBackgroundColor(Color.parseColor(BRONZE_HEX));
+        }
+
+        //Note: The rest of the bet predictions will not have any special background color.
+
+        Log.d("test", String.valueOf(numRows));
     }
 
     //Helper function to get the file name of a team logo.

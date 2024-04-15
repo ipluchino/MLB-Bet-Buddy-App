@@ -4,30 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#43D1C5">
-
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="MLB Bet Buddy"
-        android:textColor="@color/black"
-        android:textSize="42sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:background="@drawable/testing_background">
 
     <ImageView
         android:id="@+id/logoImageView"
-        android:layout_width="324dp"
-        android:layout_height="247dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="433dp"
+        android:layout_height="335dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView"
-        app:srcCompat="@drawable/mlb_logo" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bet_buddy_logo" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/scheduleButton"

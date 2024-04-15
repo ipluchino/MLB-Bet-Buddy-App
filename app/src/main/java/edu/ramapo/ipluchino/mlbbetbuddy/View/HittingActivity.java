@@ -123,5 +123,8 @@ public class HittingActivity extends AppCompatActivity {
             //Add the row into the table.
             m_tableLayout.addView(tableRow);
         }
+
+        //Set the backgrounds of the top bets to gold, silver, and bronze.
+        WidgetUtilities.SetTopBets(m_tableLayout, 3, 3 ,3);
     }
 }
