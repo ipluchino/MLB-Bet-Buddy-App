@@ -22,6 +22,7 @@ import edu.ramapo.ipluchino.mlbbetbuddy.R;
 public class HittingActivity extends AppCompatActivity {
     //Constants.
     private final String HITTING_TABLE_NAME = "TodayHitting";
+    private final int MAX_NAME_LENGTH = 20;
 
     //Private variables
     private BetPredictorModel m_BPModelObj;
@@ -99,11 +100,18 @@ public class HittingActivity extends AppCompatActivity {
 
             //Create the hitter's team logo.
             String hitterTeamName = (String) betPrediction.get("Hitter Team Name");
+
             ImageView hitterTeamLogo = WidgetUtilities.CreateTeamLogo(this, hitterTeamName, 150, 150, 30, 20, 20, 20);
             tableRow.addView(hitterTeamLogo);
 
             //Create the hitter's name.
             String hitterName = (String) betPrediction.get("Hitter Name");
+
+            //If the hitter's name is too large, shorten it.
+            if (hitterName.length() > MAX_NAME_LENGTH) {
+                hitterName = WidgetUtilities.ShortenName(hitterName);
+            }
+
             TextView name = WidgetUtilities.CreateTextView(this,hitterName, 15, 0, 50, 20, 20);
             tableRow.addView(name);
 
