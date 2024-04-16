@@ -42,7 +42,7 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
     private TextView m_weatherDescriptionTextView;
     private TextView m_temperatureTextView;
     private TextView m_windSpeedTextView;
-    private TextView m_overallBetScore;
+    private TextView m_overallBetScoreTextView;
 
     //Constructor.
     @Override
@@ -88,7 +88,7 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
         m_weatherDescriptionTextView = findViewById(R.id.weatherDescriptionNRFIYRFI);
         m_temperatureTextView = findViewById(R.id.temperatureNRFIYRFI);
         m_windSpeedTextView = findViewById(R.id.windSpeedNRFIYRFI);
-        m_overallBetScore = findViewById(R.id.overallBetScore);
+        m_overallBetScoreTextView = findViewById(R.id.overallBetScore);
 
         //Set all of the onClick listeners for the buttons.
         m_backButton.setOnClickListener(new View.OnClickListener() {
@@ -126,8 +126,6 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
             add(new Vector<Object>() { { add(m_awayPitcherKsPer9TextView); add("Away Pitcher Strikeouts Per 9"); add(false); add(2);} });
             add(new Vector<Object>() { { add(m_homePitcherHomersPer9TextView); add("Home Pitcher Homeruns Per 9"); add(false); add(2);} });
             add(new Vector<Object>() { { add(m_awayPitcherHomersPer9TextView); add("Away Pitcher Homeruns Per 9"); add(false); add(2);} });
-            add(new Vector<Object>() { { add(m_homePitcherYRFIPercentageTextView); add("Home Pitcher YRFI Percentage"); add(false); add(3);} });
-            add(new Vector<Object>() { { add(m_awayPitcherYRFIPercentageTextView); add("Away Pitcher YRFI Percentage"); add(false); add(3);} });
             add(new Vector<Object>() { { add(m_homeTeamNameTextView); add("Home Team Name"); add(false); add(null);} });
             add(new Vector<Object>() { { add(m_awayTeamNameTextView); add("Away Team Name"); add(false); add(null);} });
             add(new Vector<Object>() { { add(m_homeTeamBATextView); add("Home Team BA"); add(false); add(3);} });
@@ -136,14 +134,11 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
             add(new Vector<Object>() { { add(m_awayTeamKRateTextView); add("Away Team Strikeout Rate"); add(false); add(4);} });
             add(new Vector<Object>() { { add(m_homeTeamHomerRateTextView); add("Home Team Homerun Rate"); add(false); add(4);} });
             add(new Vector<Object>() { { add(m_awayTeamHomerRateTextView); add("Away Team Homerun Rate"); add(false); add(4);} });
-            add(new Vector<Object>() { { add(m_homeTeamYRFIPercentageTextView); add("Home Team YRFI Percentage"); add(false); add(3);} });
-            add(new Vector<Object>() { { add(m_awayTeamYRFIPercentageTextView); add("Away Team YRFI Percentage"); add(false); add(3);} });
             add(new Vector<Object>() { { add(m_stadiumTextView); add("Stadium"); add(true); add(null);} });
             add(new Vector<Object>() { { add(m_ballParkFactorTextView); add("Ballpark Factor"); add(true); add(0);} });
             add(new Vector<Object>() { { add(m_weatherDescriptionTextView); add("Weather Description"); add(true); add(null);} });
             add(new Vector<Object>() { { add(m_temperatureTextView); add("Temperature"); add(true); add(null);} });
             add(new Vector<Object>() { { add(m_windSpeedTextView); add("Wind Speed"); add(true); add(null);} });
-            add(new Vector<Object>() { { add(m_overallBetScore); add("Overall NRFI Score"); add(true); add(3);} });
         }};
 
         //Fill in the NRFI/YRFI table.
@@ -151,7 +146,7 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
     }
 
     //Fill in the specific game details into the
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     private void FillBetDetails(Vector<Vector<Object>> a_fieldInformation) {
         //Set the fields that require additional processing.
         String homeTeamName = (String) m_betDetails.get("Home Team Name");
@@ -164,7 +159,21 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
         String localGameTime = m_BPModelObj.ConvertToTimezone((String) m_betDetails.get("DateTime String"), TimeZone.getDefault().getID());
         m_localGameTimeTextView.setText(WidgetUtilities.MakePartialTextBold("Game Time: ", localGameTime));
 
-        //Set the YRFI%s?
+        //Set the YRFI percentages to be actual percentages, rather than a number between 0 and 1.
+        Double homePitcherYRFIPercentage = ((Double) m_betDetails.get("Home Pitcher YRFI Percentage") * 100.0);
+        Double awayPitcherYRFIPercentage = ((Double) m_betDetails.get("Away Pitcher YRFI Percentage") * 100.0);
+        Double homeTeamYRFIPercentage = ((Double) m_betDetails.get("Home Team YRFI Percentage") * 100.0);
+        Double awayTeamYRFIPercentage = ((Double) m_betDetails.get("Away Team YRFI Percentage") * 100.0);
+
+        //Round the percentages to 2 decimal places.
+        m_homePitcherYRFIPercentageTextView.setText(String.format("%.2f", homePitcherYRFIPercentage) + "%");
+        m_awayPitcherYRFIPercentageTextView.setText(String.format("%.2f", awayPitcherYRFIPercentage) + "%");
+        m_homeTeamYRFIPercentageTextView.setText(String.format("%.2f", homeTeamYRFIPercentage) + "%");
+        m_awayTeamYRFIPercentageTextView.setText(String.format("%.2f", awayTeamYRFIPercentage) + "%");
+
+        //Set the overall bet score.
+        String roundedScore = String.format("%.3f", (Double) m_betDetails.get("Overall NRFI Score") * 100.0);
+        m_overallBetScoreTextView.setText(WidgetUtilities.MakePartialTextBold("Overall Bet Score: ", roundedScore));
 
         //Fill the remaining fields in.
         WidgetUtilities.FillInTableTextViews(a_fieldInformation, m_betDetails);

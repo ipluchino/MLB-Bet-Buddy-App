@@ -199,8 +199,23 @@ public class WidgetUtilities {
         }
 
         //Note: The rest of the bet predictions will not have any special background color.
+    }
 
-        Log.d("test", String.valueOf(numRows));
+    public static String ShortenName(String a_fullName) {
+        //First, extract the players first name and shorten it.
+        int indexOfFirstSpace = a_fullName.indexOf(" ");
+        String firstName = a_fullName.substring(0, indexOfFirstSpace);
+        char firstNameFirstLetter = firstName.charAt(0);
+
+        //Create the shortened name. The shortened name is in the format: A. Judge
+        String shortenedName = firstNameFirstLetter + "." + a_fullName.substring(indexOfFirstSpace);
+
+        //Sometimes players can have additional names, separated by dashes. If this is case, remove the dashed names.
+        if (a_fullName.contains("-")) {
+            shortenedName = shortenedName.substring(0, shortenedName.indexOf("-"));
+        }
+
+        return shortenedName;
     }
 
     //Helper function to get the file name of a team logo.
