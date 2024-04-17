@@ -6,44 +6,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#43D1C5">
 
-    <Spinner
-        android:id="@+id/titleSpinnerNRFIYRFI"
-        android:layout_width="141dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="0dp"
-        android:entries="@array/NRFIYRFIOptions"
-        android:textColor="@color/black"
-        android:textSize="50sp"
-        android:theme="@style/spinnerStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/homeButtonMRFIYRFI"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:text="Home"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/homeButtonNRFIYRFI"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/home_button"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_gravity="center_horizontal"/>
 
-    <TextView
-        android:id="@+id/dateTextViewMRFIYRFI"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Date"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.917"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <Spinner
+            android:id="@+id/titleSpinnerNRFIYRFI"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/NRFIYRFIOptions"
+            android:textColor="@color/black"
+            android:theme="@style/spinnerStyle"
+            android:layout_marginTop="2dp"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/dateTextViewNRFIYRFI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="Date"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -65,6 +74,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:divider="@drawable/divider"
             android:showDividers="middle">
+
         </TableLayout>
 
     </ScrollView>

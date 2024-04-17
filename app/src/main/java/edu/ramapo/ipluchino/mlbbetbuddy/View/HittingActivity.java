@@ -80,6 +80,10 @@ public class HittingActivity extends AppCompatActivity {
         //Set the date for the hitting table.
         m_dateTextView.setText((String) m_hittingBetPredictions.get(0).get("Date"));
 
+        //Add an empty row to the beginning of the table, so that the initial divider gets shown.
+        TableRow emptyTopRow = new TableRow(this);
+        m_tableLayout.addView(emptyTopRow);
+
         //Loop through each of the games being played.
         for (HashMap<String, Object> betPrediction : m_hittingBetPredictions) {
             //Create a new table row.
@@ -134,5 +138,9 @@ public class HittingActivity extends AppCompatActivity {
 
         //Set the backgrounds of the top bets to gold, silver, and bronze.
         WidgetUtilities.SetTopBets(m_tableLayout, 3, 3 ,3);
+
+        //Add an empty row to the end so that the divider gets shown on the bottom of the last row.
+        TableRow emptyBottomRow = new TableRow(this);
+        m_tableLayout.addView(emptyBottomRow);
     }
 }

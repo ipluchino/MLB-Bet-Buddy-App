@@ -172,33 +172,32 @@ public class WidgetUtilities {
     public static void SetTopBets(TableLayout a_betTable, int a_numGold, int a_numSilver, int a_numBronze) {
         int numRows = a_betTable.getChildCount();
 
-        Log.d("test", String.valueOf(numRows));
-
         //If there are not enough rows to color all of them, don't change any row background colors.
-        if ((a_numGold + a_numSilver + a_numBronze) > numRows) {
+        if ((a_numGold + a_numSilver + a_numBronze) > numRows-1) {
             return;
         }
 
         //Set the desired number of top bets as gold.
-        int betIndex = 0;
-        for(;betIndex < a_numGold; betIndex++) {
+        //Note: The first row is an empty row that acts as a divider.
+        int betIndex = 1;
+        for(;betIndex <= a_numGold; betIndex++) {
             TableRow row = (TableRow) a_betTable.getChildAt(betIndex);
             row.setBackgroundColor(Color.parseColor(GOLD_HEX));
         }
 
         //Set the desired number of top bets as silver.
-        for(;betIndex < (a_numGold + a_numSilver); betIndex++) {
+        for(;betIndex <= (a_numGold + a_numSilver); betIndex++) {
             TableRow row = (TableRow) a_betTable.getChildAt(betIndex);
             row.setBackgroundColor(Color.parseColor(SILVER_HEX));
         }
 
         //Set the desired number of top bets as bronze.
-        for(;betIndex < (a_numGold + a_numSilver + a_numBronze); betIndex++) {
+        for(;betIndex <= (a_numGold + a_numSilver + a_numBronze); betIndex++) {
             TableRow row = (TableRow) a_betTable.getChildAt(betIndex);
             row.setBackgroundColor(Color.parseColor(BRONZE_HEX));
         }
 
-        //Note: The rest of the bet predictions will not have any special background color.
+        //The rest of the bet predictions will not have any special background color.
     }
 
     public static String ShortenName(String a_fullName) {
