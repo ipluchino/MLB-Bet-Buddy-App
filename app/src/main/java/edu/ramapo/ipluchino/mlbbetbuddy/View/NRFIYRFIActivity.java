@@ -45,8 +45,8 @@ public class NRFIYRFIActivity extends AppCompatActivity {
         m_BPModelObj = new BetPredictorModel();
         m_tableLayout = findViewById(R.id.NRFIYRFITable);
         m_betChoiceSpinner = findViewById(R.id.titleSpinnerNRFIYRFI);
-        m_dateTextView = findViewById(R.id.dateTextViewMRFIYRFI);
-        m_homeButton = findViewById(R.id.homeButtonMRFIYRFI);
+        m_dateTextView = findViewById(R.id.dateTextViewNRFIYRFI);
+        m_homeButton = findViewById(R.id.homeButtonNRFIYRFI);
 
         //Attempt to query the server for the NRFI/YRFI information. This is done on a separate thread, not the main thread.
         m_NRFIYRFIBetPredictions = WidgetUtilities.GetData(NRFIYRFI_TABLE_NAME);
@@ -149,6 +149,10 @@ public class NRFIYRFIActivity extends AppCompatActivity {
         //Remove all the rows, if any already exist (for when changing bet types).
         m_tableLayout.removeAllViews();
 
+        //Add an empty row to the beginning of the table, so that the initial divider gets shown.
+        TableRow emptyTopRow = new TableRow(this);
+        m_tableLayout.addView(emptyTopRow);
+
         //Loop through each of the bet predictions.
         for (HashMap<String, Object> betPrediction : m_NRFIYRFIBetPredictions) {
             //Create a new table row.
@@ -204,5 +208,9 @@ public class NRFIYRFIActivity extends AppCompatActivity {
 
         //Set the backgrounds of the top bets to gold, silver, and bronze.
         WidgetUtilities.SetTopBets(m_tableLayout, 1, 1 ,1);
+
+        //Add an empty row to the end so that the divider gets shown on the bottom of the last row.
+        TableRow emptyBottomRow = new TableRow(this);
+        m_tableLayout.addView(emptyBottomRow);
     }
 }

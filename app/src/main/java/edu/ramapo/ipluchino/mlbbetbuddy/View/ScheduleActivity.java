@@ -84,6 +84,10 @@ public class ScheduleActivity extends AppCompatActivity {
         //Set the date for the schedule table.
         m_dateTextView.setText((String) m_games.get(0).get("Date"));
 
+        //Add an empty row to the beginning of the table, so that the initial divider gets shown.
+        TableRow emptyTopRow = new TableRow(this);
+        m_tableLayout.addView(emptyTopRow);
+
         //Loop through each of the games being played.
         for (HashMap<String, Object> game : m_games) {
             //Create a new table row.
@@ -135,5 +139,9 @@ public class ScheduleActivity extends AppCompatActivity {
             //Add the row into the table.
             m_tableLayout.addView(tableRow);
         }
+
+        //Add an empty row to the end so that the divider gets shown on the bottom of the last row.
+        TableRow emptyBottomRow = new TableRow(this);
+        m_tableLayout.addView(emptyBottomRow);
     }
 }
