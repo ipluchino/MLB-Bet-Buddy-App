@@ -137,7 +137,7 @@ public class HittingActivity extends AppCompatActivity {
         }
 
         //Set the backgrounds of the top bets to gold, silver, and bronze.
-        WidgetUtilities.SetTopBets(m_tableLayout, 3, 3 ,3);
+        WidgetUtilities.SetTopBets(m_tableLayout, 2, 2 ,2);
 
         //Add an empty row to the end so that the divider gets shown on the bottom of the last row.
         TableRow emptyBottomRow = new TableRow(this);
