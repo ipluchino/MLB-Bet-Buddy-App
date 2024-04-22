@@ -98,7 +98,7 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
         String homeTeamAbbreviation = BetPredictorModel.TEAM_ABBREVIATION.get(homeTeamName);
         String awayTeamName = (String) m_gameDetails.get("Away Team Name");
         String awayTeamAbbreviation = BetPredictorModel.TEAM_ABBREVIATION.get(awayTeamName);
-        m_titleTextView.setText(homeTeamAbbreviation + " @ " + awayTeamAbbreviation);
+        m_titleTextView.setText(awayTeamAbbreviation + " @ " + homeTeamAbbreviation);
 
         //Set the local time.
         String localGameTime = m_BPModelObj.ConvertToTimezone((String) m_gameDetails.get("DateTime String"), TimeZone.getDefault().getID());
