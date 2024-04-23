@@ -2,7 +2,6 @@ package edu.ramapo.ipluchino.mlbbetbuddy.View;
 
 import edu.ramapo.ipluchino.mlbbetbuddy.Model.BetPredictorModel;
 import edu.ramapo.ipluchino.mlbbetbuddy.R;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +14,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Objects;

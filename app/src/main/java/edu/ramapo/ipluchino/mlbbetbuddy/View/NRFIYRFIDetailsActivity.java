@@ -6,13 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.HashMap;
 import java.util.TimeZone;
 import java.util.Vector;
-
 import edu.ramapo.ipluchino.mlbbetbuddy.Model.BetPredictorModel;
 import edu.ramapo.ipluchino.mlbbetbuddy.R;
 
@@ -103,8 +100,6 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        //If no game information was sent to this screen, there must have been an error so alert the user.
 
         //A vector of vectors containing all of the required information to fill in the bet details table.
         //FORMAT: TextView object, key in hashmap for bet information, and whether or not the text should be partially bolded (for single columns lines).
