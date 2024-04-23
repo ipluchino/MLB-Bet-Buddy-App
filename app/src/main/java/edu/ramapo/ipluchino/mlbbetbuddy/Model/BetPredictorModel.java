@@ -15,10 +15,14 @@ import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 
 public class BetPredictorModel {
-    //Constants
+    //CONSTANTS.
+    //The endpoint used to obtain data from the MLB Bet Buddy server.
     private static final String VIEW_LINK = "Example MLB Bet Buddy Server Link";
+
+    //The amount of time to wait for the server to respond before timing out.
     private static final int TIMEOUT_TIME = 3000;
 
+    //The abbreviations for each team name.
     public static final HashMap<String, String> TEAM_ABBREVIATION = new HashMap<String, String>() {{
         put("Arizona Diamondbacks", "ARI");
         put("Atlanta Braves", "ATL");
@@ -52,13 +56,30 @@ public class BetPredictorModel {
         put("Washington Nationals", "WSH");
     }};
 
-    //Constructor
+    /**
+     * Default constructor of the BetPredictorModel class. Nothing to do here.
+     */
     public BetPredictorModel() {
         //Nothing to do here.
     }
 
-    //Makes a request to the MLB Bet Buddy server to access data from a specific table, and parses the information returned.
-    //SOURCE: https://docs.oracle.com/javase/tutorial/networking/urls/readingWriting.html
+    /**
+     * Gets data from the MLB Bet Buddy Server.
+     *
+     * This method is used to get data from the MLB Bet Buddy server, and parse it into a Vector of HashMaps so that it can easily be
+     * accessed and manipulated. A connection is first attempted to be made with the MLB Bet Buddy Server. If a response is not received
+     * within the timeout time, the request will timeout and an empty vector will be returned. If a response is received, the JSON data
+     * returned is read line by line and built into one single string. This string is then parsed into a Vector of HashMaps (see ParseData()),
+     * and returned.
+     *
+     * @param a_tableName A string, representing the table name located in the database to get the data from.
+     * @return A Vector<HashMap<String, Object> that represents the table data returned from the MLB Bet Buddy Server.
+     * @throws IOException if a URL object cannot be successfully created.
+     *
+     * Assistance Received:
+     * https://docs.oracle.com/javase/tutorial/networking/urls/readingWriting.html
+     * https://stackoverflow.com/questions/2026260/java-how-to-use-urlconnection-to-post-request-with-authorization
+     */
     public Vector<HashMap<String, Object>> GetDataFromServer(String a_tableName) throws IOException {
         //Create the url string and URL object to make a request to the server.
         String urlLink = VIEW_LINK + a_tableName;
@@ -93,9 +114,21 @@ public class BetPredictorModel {
         return ParseData(toParse);
     }
 
-    //Takes a list of JSON objects as a string, and parses them into a Vector of Hashmaps, so that each field can be easily accessed and manipulated.
-    //https://stackoverflow.com/questions/17970128/how-to-convert-string-array-to-object-using-gson-json
-    //https://www.baeldung.com/gson-json-to-map
+    /**
+     * Parses a string containing JSON data representing a table into a Vector of HashMaps.
+     *
+     * This method is used to parse a large string containing JSON data that is returned from the MLB Bet Buddy server into a Vector of
+     * Hashmaps so that the data can be easily accessed and manipulated. Each HashMap in the Vector returned represents a row from a table.
+     * Every key of the HashMap will always be a string, but the value for that key will vary between strings, doubles, and integers. The
+     * parsing of the JSON string is handled with the Google's "Gson" library.
+     *
+     * @param a_toParse A string, representing JSON data that needs to be parsed.
+     * @return A Vector<HashMap<String, Object>> representing the parsed JSON data.
+     *
+     * Assistance Received:
+     * https://stackoverflow.com/questions/17970128/how-to-convert-string-array-to-object-using-gson-json
+     * https://www.baeldung.com/gson-json-to-map
+     */
     public Vector<HashMap<String, Object>> ParseData(String a_toParse) {
         //Set the type that the input string representing a JSON will be parsed into.
         //NOTE: a_toParse will be in the format [{}, {}, {}...] where each {} is an individual JSON object.
@@ -118,10 +151,20 @@ public class BetPredictorModel {
         return resultVector;
     }
 
-    //Takes a UTC DateTime string and a Timezone ID and converts the DateTimeString to the given timezone.
-    //Returns a time in the format 7:10 PM.
-    //https://stackoverflow.com/questions/6543174/how-can-i-parse-utc-date-time-string-into-something-more-readable
-    //https://stackoverflow.com/questions/42425393/how-to-format-a-zoneddatetime-to-a-string
+    /**
+     * Converts a UTC date into a provided timezone.
+     *
+     * This method converts a UTC date string into the requested timezone, and formats it into the format "h:mm a". If the timezone
+     * ID that is provided to this method is invalid, a default timezone of EST (Eastern Standard Time) is used.
+     *
+     * @param a_dateToConvert A string, representing UTC date that will be converted.
+     * @param a_timeZoneID A string, representing the ID of the timezone to convert to.
+     * @return A string, representing the converted UTC date into the requested timezone in the format "h:mm a". Example: 1:15 PM
+     *
+     * Assistance Received:
+     * https://stackoverflow.com/questions/6543174/how-can-i-parse-utc-date-time-string-into-something-more-readable
+     * https://stackoverflow.com/questions/42425393/how-to-format-a-zoneddatetime-to-a-string
+     */
     public String ConvertToTimezone(String a_dateToConvert, String a_timeZoneID) {
         //Create a UTC instant of the provided UTC date.
         Instant instant = Instant.parse(a_dateToConvert);
@@ -142,17 +185,18 @@ public class BetPredictorModel {
         return DateTimeFormatter.ofPattern("h:mm a").format(convertedDateTime);
     }
 
-    //TESTING.
+    /**
+     The main function of the BetPredictorModel class - used for testing purposes.
+     @param args An array of strings, representing command line arguments.
+     */
     public static void main(String[] args) throws IOException {
         BetPredictorModel BPModel = new BetPredictorModel();
 
         //Testing database query.
-        System.out.println("Hi");
         Vector<HashMap<String, Object>> data = BPModel.GetDataFromServer("TodaySchedule");
         for (HashMap<String, Object> hm: data) {
             System.out.println(hm);
         }
-        System.out.println("Hi2");
 
         //Testing time conversion.
         String sampleDateTime = "2024-04-02T02:10:00Z";
