@@ -36,7 +36,19 @@ public class HittingDetailsActivity extends AppCompatActivity {
     private TextView m_windSpeedTextView;
     private TextView m_overallBetScoreTextView;
 
-    //Constructor.
+    /**
+     * Creates the HittingDetailsActivity.
+     *
+     * This method creates the HittingDetailsActivity and sets the screen's view to the hitting bet details layout. It also initializes the
+     * private variables, sets event handlers for buttons, and dynamically fills in the hitting bet details information based on the information
+     * received from the Intent object passed to this activity.
+     *
+     * Assistance Received:
+     * https://stackoverflow.com/questions/66844568/how-to-initialize-a-vector-with-values-in-java
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most
+     *        recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
