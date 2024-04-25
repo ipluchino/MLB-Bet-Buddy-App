@@ -51,7 +51,7 @@ public class HittingActivity extends AppCompatActivity {
             WidgetUtilities.DisplayLackOfData(this);
         }
 
-        //Set all of the onClick listeners for the buttons.
+        //OnClick listener for the home button.
         m_homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,9 +65,18 @@ public class HittingActivity extends AppCompatActivity {
         FillHittingTable();
     }
 
-    //Fills in the hitting table dynamically.
-    //https://stackoverflow.com/questions/6583843/how-to-access-resource-with-dynamic-name-in-my-case
-    //https://stackoverflow.com/questions/8669747/dynamically-add-imageview-to-tablerow
+    /**
+     * Dynamically fills in the TableLayout with the hitting bet predictions.
+     *
+     * This method dynamically fills in the TableLayout with TableRows, with each TableRow representing a hitting bet prediction for the current
+     * day. Each created TableRow object contains the hitter's name, the local start time of the game, and the overall hitting bet prediction score.
+     * Additionally, each TableRow object has its OnClickListener set so that if you click anywhere in the row, it takes you to the
+     * HittingDetailsActivity screen to show more information about the bet prediction.
+     *
+     * Assistance Received:
+     * https://stackoverflow.com/questions/6583843/how-to-access-resource-with-dynamic-name-in-my-case
+     * https://stackoverflow.com/questions/8669747/dynamically-add-imageview-to-tablerow
+     */
     private void FillHittingTable() {
         if(m_hittingBetPredictions.isEmpty()) {
             return;
@@ -119,7 +128,7 @@ public class HittingActivity extends AppCompatActivity {
             TimeZone localTimezone = TimeZone.getDefault();
             String UTCGameTime = (String) betPrediction.get("DateTime String");
             String localGameTime = m_BPModelObj.ConvertToTimezone(UTCGameTime, localTimezone.getID());
-            TextView gameTime = WidgetUtilities.CreateTextView(this, localGameTime, 15, 0, 50, 90, 20);
+            TextView gameTime = WidgetUtilities.CreateTextView(this, localGameTime, 15, 0, 50, 110, 20);
             tableRow.addView(gameTime);
 
             //Create the hitting bet score.

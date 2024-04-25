@@ -50,7 +50,7 @@ public class ScheduleActivity extends AppCompatActivity {
             WidgetUtilities.DisplayLackOfData(this);
         }
 
-        //Set all of the onClick listeners for the buttons.
+        //OnClick listener for the home button.
         m_homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,9 +64,19 @@ public class ScheduleActivity extends AppCompatActivity {
         FillScheduleTable();
     }
 
-    //Fills in the schedule table dynamically.
-    //https://stackoverflow.com/questions/6583843/how-to-access-resource-with-dynamic-name-in-my-case
-    //https://stackoverflow.com/questions/8669747/dynamically-add-imageview-to-tablerow
+    /**
+     * Dynamically fills in the TableLayout with the schedule information.
+     *
+     * This method dynamically fills in the TableLayout with TableRows, with each TableRow representing a game on the schedule for the current
+     * day. Each created TableRow object contains the contains the away team playing in the game and associated logo, the home team playing in
+     * the game and associated logo, the local start time of the game, and a weather icon representing the weather at the start time of the game.
+     * Additionally, each TableRow object has its OnClickListener set so that if you click anywhere in the row, it takes you to the
+     * ScheduleDetailsActivity screen to show more information about the game.
+     *
+     * Assistance Received:
+     * https://stackoverflow.com/questions/6583843/how-to-access-resource-with-dynamic-name-in-my-case
+     * https://stackoverflow.com/questions/8669747/dynamically-add-imageview-to-tablerow
+     */
     private void FillScheduleTable() {
         if(m_games.isEmpty()) {
             return;
@@ -124,7 +134,7 @@ public class ScheduleActivity extends AppCompatActivity {
 
             //Create the weather icon for the game.
             String weatherDescription = (String) game.get("Weather Description");
-            ImageView weatherIcon = WidgetUtilities.CreateWeatherIcon(this, weatherDescription, 150, 150, 0, 20, 0, 20);
+            ImageView weatherIcon = WidgetUtilities.CreateWeatherIcon(this, weatherDescription, 150, 150, 10, 20, 20, 20);
             tableRow.addView(weatherIcon);
 
             //Add the row into the table.

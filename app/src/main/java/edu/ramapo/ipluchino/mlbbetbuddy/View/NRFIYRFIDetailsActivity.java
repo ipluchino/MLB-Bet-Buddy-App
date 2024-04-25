@@ -1,6 +1,5 @@
 package edu.ramapo.ipluchino.mlbbetbuddy.View;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -87,7 +86,7 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
         m_windSpeedTextView = findViewById(R.id.windSpeedNRFIYRFI);
         m_overallBetScoreTextView = findViewById(R.id.overallBetScore);
 
-        //Set all of the onClick listeners for the buttons.
+        //OnClick listener for the back button.
         m_backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,8 +139,20 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
         FillBetDetails(fieldInformation);
     }
 
-    //Fill in the specific game details into the
-    @SuppressLint({"SetTextI18n", "DefaultLocale"})
+    /**
+     * Fills in the specific bet details for the NRFI or YRFI bet.
+     *
+     * This method is used to fill in the specific bet details into the TextViews when a user opens the details about a NRFI or YRFI bet. First,
+     * the TextView representing the title of the screen is updated based on which team is playing each other in the format "Away Team @ Home Team".
+     * Then, the local game time is set (see ConvertToTimezone() in the BetPredictorModel class). Other TextViews such as the YRFI percentages as well as
+     * the overall NRFI score are also configured here as they require some additional processing. Finally, the remaining TextViews are automatically
+     * filled in based on the information provided from the MLB Bet Buddy server (see FillInTableTextViews() in the WidgetUtilities class).
+     *
+     * @param a_fieldInformation A Vector<Vector<Object>>, where each inner Vector contains the TextView objects that need to be filled with text,
+     *                           the keys in the HashMap obtained from the MLB Bet Buddy server to find the text to fill the TextView objects with,
+     *                           whether or not the text should be partially bolded, and how many decimal places to round the text to for fields that
+     *                           are doubles.
+     */
     private void FillBetDetails(Vector<Vector<Object>> a_fieldInformation) {
         //Set the fields that require additional processing.
         String homeTeamName = (String) m_betDetails.get("Home Team Name");

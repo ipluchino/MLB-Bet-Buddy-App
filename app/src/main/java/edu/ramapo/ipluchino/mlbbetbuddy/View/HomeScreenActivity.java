@@ -26,7 +26,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         m_NRFIYRFIButton = findViewById(R.id.NRFIYRFIButton);
         m_hittingButton = findViewById(R.id.hittingButton);
 
-        //Set all of the onClick listeners for the buttons.
+        //OnClick listener for the schedule button.
         m_scheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,6 +36,7 @@ public class HomeScreenActivity extends AppCompatActivity {
             }
         });
 
+        //OnClick listener for the NRFI & YRFI button.
         m_NRFIYRFIButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +45,7 @@ public class HomeScreenActivity extends AppCompatActivity {
             }
         });
 
+        //OnClick listener for the hitting button.
         m_hittingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

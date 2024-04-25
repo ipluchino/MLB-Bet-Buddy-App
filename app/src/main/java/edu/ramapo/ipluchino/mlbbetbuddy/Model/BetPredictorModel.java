@@ -72,13 +72,13 @@ public class BetPredictorModel {
      * returned is read line by line and built into one single string. This string is then parsed into a Vector of HashMaps (see ParseData()),
      * and returned.
      *
-     * @param a_tableName A string, representing the table name located in the database to get the data from.
-     * @return A Vector<HashMap<String, Object> that represents the table data returned from the MLB Bet Buddy Server.
-     * @throws IOException if a URL object cannot be successfully created.
-     *
      * Assistance Received:
      * https://docs.oracle.com/javase/tutorial/networking/urls/readingWriting.html
      * https://stackoverflow.com/questions/2026260/java-how-to-use-urlconnection-to-post-request-with-authorization
+     *
+     * @param a_tableName A string, representing the table name located in the database to get the data from.
+     * @return A Vector<HashMap<String, Object> that represents the table data returned from the MLB Bet Buddy Server.
+     * @throws IOException if a URL object cannot be successfully created.
      */
     public Vector<HashMap<String, Object>> GetDataFromServer(String a_tableName) throws IOException {
         //Create the url string and URL object to make a request to the server.
@@ -122,12 +122,12 @@ public class BetPredictorModel {
      * Every key of the HashMap will always be a string, but the value for that key will vary between strings, doubles, and integers. The
      * parsing of the JSON string is handled with the Google's "Gson" library.
      *
-     * @param a_toParse A string, representing JSON data that needs to be parsed.
-     * @return A Vector<HashMap<String, Object>> representing the parsed JSON data.
-     *
      * Assistance Received:
      * https://stackoverflow.com/questions/17970128/how-to-convert-string-array-to-object-using-gson-json
      * https://www.baeldung.com/gson-json-to-map
+     *
+     * @param a_toParse A string, representing JSON data that needs to be parsed.
+     * @return A Vector<HashMap<String, Object>>, representing the parsed JSON data.
      */
     public Vector<HashMap<String, Object>> ParseData(String a_toParse) {
         //Set the type that the input string representing a JSON will be parsed into.
@@ -157,13 +157,13 @@ public class BetPredictorModel {
      * This method converts a UTC date string into the requested timezone, and formats it into the format "h:mm a". If the timezone
      * ID that is provided to this method is invalid, a default timezone of EST (Eastern Standard Time) is used.
      *
-     * @param a_dateToConvert A string, representing UTC date that will be converted.
-     * @param a_timeZoneID A string, representing the ID of the timezone to convert to.
-     * @return A string, representing the converted UTC date into the requested timezone in the format "h:mm a". Example: 1:15 PM
-     *
      * Assistance Received:
      * https://stackoverflow.com/questions/6543174/how-can-i-parse-utc-date-time-string-into-something-more-readable
      * https://stackoverflow.com/questions/42425393/how-to-format-a-zoneddatetime-to-a-string
+     *
+     * @param a_dateToConvert A string, representing UTC date that will be converted.
+     * @param a_timeZoneID A string, representing the ID of the timezone to convert to.
+     * @return A string, representing the converted UTC date into the requested timezone in the format "h:mm a". Example: 1:15 PM.
      */
     public String ConvertToTimezone(String a_dateToConvert, String a_timeZoneID) {
         //Create a UTC instant of the provided UTC date.
