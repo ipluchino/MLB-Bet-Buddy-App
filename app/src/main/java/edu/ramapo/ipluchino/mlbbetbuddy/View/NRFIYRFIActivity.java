@@ -33,7 +33,17 @@ public class NRFIYRFIActivity extends AppCompatActivity {
     private Button m_homeButton;
     private String m_betChoice;
 
-    //Constructor.
+    /**
+     * Creates the NRFIYRFIActivity.
+     *
+     * This method creates the NRFIYRFIActivity and sets the screen's view to the NRFIYRFI layout. It also initializes the private variables,
+     * sets event handlers for buttons as well as the Spinner object that determines NRFI or YRFI as the bet type being displayed. The initial
+     * ordering of the NRFI or YRFI bets is determined through the Intent object passed to this activity. Finally, the NRFIYRFI bet table is
+     * dynamically filled in.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most
+     *        recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

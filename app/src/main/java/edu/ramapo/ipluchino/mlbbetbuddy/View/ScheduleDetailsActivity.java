@@ -29,7 +29,19 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
     private TextView m_temperatureTextView;
     private TextView m_windSpeedTextView;
 
-    //Constructor.
+    /**
+     * Creates the ScheduleDetailsActivity.
+     *
+     * This method creates the ScheduleDetailsActivity and sets the screen's view to the schedule details layout. It also initializes the
+     * private variables, sets event handlers for buttons, and dynamically fills in the schedule details information based on the information
+     * received from the Intent object passed to this activity.
+     *
+     * Assistance Received:
+     * https://stackoverflow.com/questions/66844568/how-to-initialize-a-vector-with-values-in-java
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most
+     *        recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +79,6 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
         //A vector of vectors containing all of the required information to fill in the schedule details table.
         //FORMAT: TextView object, key in hashmap for schedule information, and whether or not the text should be partially bolded (for single columns lines).
         //There is an additional entry for fields that are doubles, used to determine the number of decimal places to round to.
-        //Assistance: https://stackoverflow.com/questions/66844568/how-to-initialize-a-vector-with-values-in-java
         Vector<Vector<Object>> fieldInformation = new Vector<Vector<Object>>() {{
             add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false); add(null);} });
             add(new Vector<Object>() { { add(m_homeTeamNameTextView); add("Home Team Name"); add(false); add(null);} });

@@ -15,7 +15,15 @@ public class HomeScreenActivity extends AppCompatActivity {
     private Button m_NRFIYRFIButton;
     private Button m_hittingButton;
 
-    //Constructor.
+    /**
+     * Creates the HomeScreenActivity.
+     *
+     * This method creates the HomeScreenActivity and sets the screen's view to the home screen layout. It also initializes the private variables,
+     * sets event handlers for buttons to navigate around the app.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most
+     *        recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +64,13 @@ public class HomeScreenActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Determines the initial bet choice if the user wishes to view NRFI/YRFI bet predictions.
+     *
+     * This method is used to determine which type of bet, either NRFI or YRFI, the user would like to view when they select the "NRFI & YRFI" button
+     * on the home screen. The choice is determined via an alert dialog. Once the user makes a selection, the screen is switched to the NRFIYRFIActivity,
+     * with the initial ordering of the bets depending on what the user selected on the alert dialog.
+     */
     private void DetermineNRFIYRFI() {
         //Create an alert dialog box to get input from the user.
         AlertDialog.Builder builder = new AlertDialog.Builder(HomeScreenActivity.this);
@@ -85,5 +100,4 @@ public class HomeScreenActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
 }
