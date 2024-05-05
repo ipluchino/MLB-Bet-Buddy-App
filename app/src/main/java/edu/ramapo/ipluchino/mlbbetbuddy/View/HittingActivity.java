@@ -1,3 +1,12 @@
+/**
+*********************************************************************************************************************************
+* Author: Ian Pluchino                                                                                                          *
+* Class: HittingActivity class                                                                                                  *
+* Description: A view class, used to configure and dynamically display the HittingActivity screen of the application.           *
+* Date: 5/2/24                                                                                                                  *
+*********************************************************************************************************************************
+*/
+
 package edu.ramapo.ipluchino.mlbbetbuddy.View;
 
 import android.content.Intent;

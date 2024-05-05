@@ -1,3 +1,12 @@
+/**
+ *********************************************************************************************************************************
+ * Author: Ian Pluchino                                                                                                          *
+ * Class: WidgetUtilities class                                                                                                  *
+ * Description: A utility class that all other activity classes use, used to create and modify widgets.                          *
+ * Date: 5/2/24                                                                                                                  *
+ *********************************************************************************************************************************
+ */
+
 package edu.ramapo.ipluchino.mlbbetbuddy.View;
 
 import android.app.AlertDialog;

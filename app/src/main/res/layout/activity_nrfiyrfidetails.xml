@@ -430,7 +430,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textSize="28sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:tooltipText="Home runs per 9 innings."/>
 
                 <TextView
                     android:id="@+id/awayTeamPitcherHomersPer9"
@@ -707,7 +708,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Homerun Rate"
+                    android:text="Home Run Rate"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:textColor="@color/black"
@@ -715,7 +716,7 @@
                     android:gravity="center"
                     android:textSize="28sp"
                     android:textStyle="bold"
-                    android:tooltipText="The percentage of at bats the team hits a homerun."/>
+                    android:tooltipText="The percentage of at bats the team hits a home run."/>
 
                 <TextView
                     android:id="@+id/awayTeamHomerRate"
@@ -762,7 +763,7 @@
                     android:gravity="center"
                     android:textSize="28sp"
                     android:textStyle="bold"
-                    android:tooltipText="The percentage of games a team has let up a run in the first inning."/>
+                    android:tooltipText="The percentage of games a team has scored a run in the first inning."/>
 
                 <TextView
                     android:id="@+id/awayTeamYRFIPercentage"

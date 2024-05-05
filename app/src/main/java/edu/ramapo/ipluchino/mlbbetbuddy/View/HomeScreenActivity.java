@@ -1,3 +1,12 @@
+/**
+ *********************************************************************************************************************************
+ * Author: Ian Pluchino                                                                                                          *
+ * Class: HomeScreenActivity class                                                                                               *
+ * Description: A view class, used to configure and dynamically display the HomeScreen screen of the application.                *
+ * Date: 5/2/24                                                                                                                  *
+ *********************************************************************************************************************************
+ */
+
 package edu.ramapo.ipluchino.mlbbetbuddy.View;
 
 import edu.ramapo.ipluchino.mlbbetbuddy.R;
@@ -74,8 +83,8 @@ public class HomeScreenActivity extends AppCompatActivity {
     private void DetermineNRFIYRFI() {
         //Create an alert dialog box to get input from the user.
         AlertDialog.Builder builder = new AlertDialog.Builder(HomeScreenActivity.this);
-        builder.setTitle("Choose a bet type");
-        builder.setMessage("Would you like to view the NRFI or YRFI bets?");
+        builder.setTitle("Bet Choice");
+        builder.setMessage("Please choose a bet type: NRFI or YRFI. \n\nNote: The lower the bet score, the better for NRFI, and the higher the bet score, the better for YRFI.");
 
         //OK button to clear the alert dialog.
         builder.setPositiveButton("YRFI", new DialogInterface.OnClickListener() {

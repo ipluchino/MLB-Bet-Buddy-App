@@ -1,3 +1,12 @@
+/**
+ *********************************************************************************************************************************
+ * Author: Ian Pluchino                                                                                                          *
+ * Class: BetPredictorModel class                                                                                                *
+ * Description: The model class for the application, mainly used to receive data from the MLB Bet Buddy Server.                  *
+ * Date: 5/2/24                                                                                                                  *
+ *********************************************************************************************************************************
+ */
+
 package edu.ramapo.ipluchino.mlbbetbuddy.Model;
 
 import android.util.Log;
@@ -17,7 +26,7 @@ import java.time.format.DateTimeFormatter;
 public class BetPredictorModel {
     //CONSTANTS.
     //The endpoint used to obtain data from the MLB Bet Buddy server.
-    private static final String VIEW_LINK = "http://96.242.10.84:5000/view/";
+    private static final String VIEW_LINK = "http://108.53.156.205:5000/view/";
 
     //The amount of time to wait for the server to respond before timing out.
     private static final int TIMEOUT_TIME = 3000;
