@@ -1,3 +1,12 @@
+/**
+ *********************************************************************************************************************************
+ * Author: Ian Pluchino                                                                                                          *
+ * Class: BetPredictorModel class                                                                                                *
+ * Description: The model class for the application, mainly used to receive data from the MLB Bet Buddy Server.                  *
+ * Date: 5/2/24                                                                                                                  *
+ *********************************************************************************************************************************
+ */
+
 package edu.ramapo.ipluchino.mlbbetbuddy.Model;
 
 import android.util.Log;

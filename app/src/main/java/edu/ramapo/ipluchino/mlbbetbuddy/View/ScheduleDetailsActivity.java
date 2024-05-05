@@ -1,3 +1,12 @@
+/**
+ *********************************************************************************************************************************
+ * Author: Ian Pluchino                                                                                                          *
+ * Class: ScheduleDetailsActivity class                                                                                          *
+ * Description: A view class, used to configure and dynamically display the ScheduleDetails screen of the application.           *
+ * Date: 5/2/24                                                                                                                  *
+ *********************************************************************************************************************************
+ */
+
 package edu.ramapo.ipluchino.mlbbetbuddy.View;
 
 import edu.ramapo.ipluchino.mlbbetbuddy.Model.BetPredictorModel;
