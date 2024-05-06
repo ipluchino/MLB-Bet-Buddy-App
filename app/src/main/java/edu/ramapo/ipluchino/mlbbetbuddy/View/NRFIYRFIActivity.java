@@ -50,6 +50,12 @@ public class NRFIYRFIActivity extends AppCompatActivity {
      * ordering of the NRFI or YRFI bets is determined through the Intent object passed to this activity. Finally, the NRFIYRFI bet table is
      * dynamically filled in.
      *
+     * Assistance Received:
+     * https://www.geeksforgeeks.org/reverse-order-of-all-elements-of-java-vector/
+     * https://stackoverflow.com/questions/11072576/set-selected-item-of-spinner-programmatically
+     * https://stackoverflow.com/questions/1337424/android-spinner-get-the-selected-item-change-event
+     * https://stackoverflow.com/questions/36131281/how-to-get-string-from-setonitemselectedlistener-method
+     *
      * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most
      *        recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
      */
@@ -69,8 +75,6 @@ public class NRFIYRFIActivity extends AppCompatActivity {
         m_NRFIYRFIBetPredictions = WidgetUtilities.GetData(NRFIYRFI_TABLE_NAME);
 
         //Determine the initial ordering of the bets.
-        //Assistance: https://www.geeksforgeeks.org/reverse-order-of-all-elements-of-java-vector/
-        //Assistance: https://stackoverflow.com/questions/11072576/set-selected-item-of-spinner-programmatically
         if (Objects.equals(getIntent().getStringExtra("betChoice"), "YRFI")) {
             //If the initial ordering if "YRFI", the order of the games vector needs to be reversed since the games are returned by the server in NRFI order by default.
             Collections.reverse(m_NRFIYRFIBetPredictions);
@@ -103,8 +107,6 @@ public class NRFIYRFIActivity extends AppCompatActivity {
         });
 
         //Set an event listener for the bet choice spinner, to know when it changed.
-        //Assistance: https://stackoverflow.com/questions/1337424/android-spinner-get-the-selected-item-change-event
-        //Assistance: https://stackoverflow.com/questions/36131281/how-to-get-string-from-setonitemselectedlistener-method
         m_betChoiceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
