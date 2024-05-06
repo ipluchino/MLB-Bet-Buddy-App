@@ -2,7 +2,7 @@
  *********************************************************************************************************************************
  * Author: Ian Pluchino                                                                                                          *
  * Class: HomeScreenActivity class                                                                                               *
- * Description: A view class, used to configure and dynamically display the HomeScreen screen of the application.                *
+ * Description: A view class, used to configure and display the HomeScreen screen of the application.                            *
  * Date: 5/2/24                                                                                                                  *
  *********************************************************************************************************************************
  */
