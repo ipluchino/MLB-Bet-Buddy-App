@@ -110,7 +110,6 @@ public class HittingDetailsActivity extends AppCompatActivity {
         //A vector of vectors containing all of the required information to fill in the bet details table.
         //FORMAT: TextView object, key in hashmap for bet information, and whether or not the text should be partially bolded (for single columns lines).
         //There is an additional entry for fields that are doubles, used to determine the number of decimal places to round to.
-        //Assistance: https://stackoverflow.com/questions/66844568/how-to-initialize-a-vector-with-values-in-java
         Vector<Vector<Object>> fieldInformation = new Vector<Vector<Object>>() {{
             add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false); add(null);} });
             add(new Vector<Object>() { { add(m_hitterNameTextView); add("Hitter Name"); add(true); add(null);} });
