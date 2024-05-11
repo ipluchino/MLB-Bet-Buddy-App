@@ -19,14 +19,14 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeScreenActivity extends AppCompatActivity {
-    //Private variables
+    //PRIVATE VARIABLES
     private Button m_scheduleButton;
     private Button m_NRFIYRFIButton;
     private Button m_hittingButton;
 
     /**
      * Creates the HomeScreenActivity.
-     *
+     * <p>
      * This method creates the HomeScreenActivity and sets the screen's view to the home screen layout. It also initializes the private variables,
      * sets event handlers for buttons to navigate around the app.
      *
@@ -75,7 +75,7 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     /**
      * Determines the initial bet choice if the user wishes to view NRFI/YRFI bet predictions.
-     *
+     * <p>
      * This method is used to determine which type of bet, either NRFI or YRFI, the user would like to view when they select the "NRFI & YRFI" button
      * on the home screen. The choice is determined via an alert dialog. Once the user makes a selection, the screen is switched to the NRFIYRFIActivity,
      * with the initial ordering of the bets depending on what the user selected on the alert dialog.

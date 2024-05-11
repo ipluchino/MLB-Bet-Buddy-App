@@ -25,10 +25,10 @@ import java.util.TimeZone;
 import java.util.Vector;
 
 public class ScheduleActivity extends AppCompatActivity {
-    //Constants.
+    //CONSTANTS
     private final String SCHEDULE_TABLE_NAME = "TodaySchedule";
 
-    //Private variables
+    //PRIVATE VARIABLES
     private BetPredictorModel m_BPModelObj;
     private Vector<HashMap<String, Object>> m_games;
     private TableLayout m_tableLayout;
@@ -37,7 +37,7 @@ public class ScheduleActivity extends AppCompatActivity {
 
     /**
      * Creates the ScheduleActivity.
-     *
+     * <p>
      * This method creates the ScheduleActivity and sets the screen's view to the schedule layout. It also initializes the private variables,
      * sets event handlers for buttons, and dynamically fills in the schedule table.
      *
@@ -83,15 +83,17 @@ public class ScheduleActivity extends AppCompatActivity {
 
     /**
      * Dynamically fills in the TableLayout with the schedule information.
-     *
+     * <p>
      * This method dynamically fills in the TableLayout with TableRows, with each TableRow representing a game on the schedule for the current
      * day. Each created TableRow object contains the contains the away team playing in the game and associated logo, the home team playing in
      * the game and associated logo, the local start time of the game, and a weather icon representing the weather at the start time of the game.
      * Additionally, each TableRow object has its OnClickListener set so that if you click anywhere in the row, it takes you to the
      * ScheduleDetailsActivity screen to show more information about the game.
-     *
+     * <p>
      * Assistance Received:
+     * <p>
      * https://stackoverflow.com/questions/6583843/how-to-access-resource-with-dynamic-name-in-my-case
+     * <p>
      * https://stackoverflow.com/questions/8669747/dynamically-add-imageview-to-tablerow
      */
     private void FillScheduleTable() {

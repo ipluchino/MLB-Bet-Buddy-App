@@ -25,11 +25,11 @@ import edu.ramapo.ipluchino.mlbbetbuddy.Model.BetPredictorModel;
 import edu.ramapo.ipluchino.mlbbetbuddy.R;
 
 public class HittingActivity extends AppCompatActivity {
-    //Constants.
+    //CONSTANTS
     private final String HITTING_TABLE_NAME = "TodayHitting";
     private final int MAX_NAME_LENGTH = 20;
 
-    //Private variables
+    //PRIVATE VARIABLES
     private BetPredictorModel m_BPModelObj;
     private Vector<HashMap<String, Object>> m_hittingBetPredictions;
     private TableLayout m_tableLayout;
@@ -38,7 +38,7 @@ public class HittingActivity extends AppCompatActivity {
 
     /**
      * Creates the HittingActivity.
-     *
+     * <p>
      * This method creates the HittingActivity and sets the screen's view to the hitting layout. It also initializes the private variables,
      * sets event handlers for buttons, and dynamically fills in the hitting bet table.
      *
@@ -84,14 +84,16 @@ public class HittingActivity extends AppCompatActivity {
 
     /**
      * Dynamically fills in the TableLayout with the hitting bet predictions.
-     *
+     * <p>
      * This method dynamically fills in the TableLayout with TableRows, with each TableRow representing a hitting bet prediction for the current
      * day. Each created TableRow object contains the hitter's name, the local start time of the game, and the overall hitting bet prediction score.
      * Additionally, each TableRow object has its OnClickListener set so that if you click anywhere in the row, it takes you to the
      * HittingDetailsActivity screen to show more information about the bet prediction.
-     *
+     * <p>
      * Assistance Received:
+     * <p>
      * https://stackoverflow.com/questions/6583843/how-to-access-resource-with-dynamic-name-in-my-case
+     * <p>
      * https://stackoverflow.com/questions/8669747/dynamically-add-imageview-to-tablerow
      */
     private void FillHittingTable() {
