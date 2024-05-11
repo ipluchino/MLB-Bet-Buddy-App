@@ -22,7 +22,7 @@ import java.util.TimeZone;
 import java.util.Vector;
 
 public class ScheduleDetailsActivity extends AppCompatActivity {
-    //Private variables
+    //PRIVATE VARIABLES
     private BetPredictorModel m_BPModelObj;
     private HashMap<String, Object> m_gameDetails;
     private Button m_backButton;
@@ -40,12 +40,13 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
 
     /**
      * Creates the ScheduleDetailsActivity.
-     *
+     * <p>
      * This method creates the ScheduleDetailsActivity and sets the screen's view to the schedule details layout. It also initializes the
      * private variables, sets event handlers for buttons, and dynamically fills in the schedule details information based on the information
      * received from the Intent object passed to this activity.
-     *
+     * <p>
      * Assistance Received:
+     * <p>
      * https://stackoverflow.com/questions/66844568/how-to-initialize-a-vector-with-values-in-java
      *
      * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most
@@ -109,13 +110,13 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
 
     /**
      * Fills in the specific game details.
-     *
+     * <p>
      * This method is used to fill in the specific game details into the TextViews when a user opens the details about a game on the schedule. First,
      * the TextView representing the title of the screen is updated based on which team is playing each other in the format "Away Team @ Home Team".
      * Then, the local game time is set (see ConvertToTimezone() in the BetPredictorModel class). Finally, the remaining TextViews are automatically
      * filled in based on the information provided from the MLB Bet Buddy server (see FillInTableTextViews() in the WidgetUtilities class).
      *
-     * @param a_fieldInformation A Vector<Vector<Object>>, where each inner Vector contains the TextView objects that need to be filled with text,
+     * @param a_fieldInformation A {@code Vector<Vector<Object>>}, where each inner Vector contains the TextView objects that need to be filled with text,
      *                           the keys in the HashMap obtained from the MLB Bet Buddy server to find the text to fill the TextView objects with,
      *                           whether or not the text should be partially bolded, and how many decimal places to round the text to for fields that
      *                           are doubles.

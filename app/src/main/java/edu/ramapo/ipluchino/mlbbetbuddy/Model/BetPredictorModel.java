@@ -24,7 +24,7 @@ import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 
 public class BetPredictorModel {
-    //CONSTANTS.
+    //CONSTANTS
     //The endpoint used to obtain data from the MLB Bet Buddy server.
     private static final String VIEW_LINK = "Example MLB Bet Buddy Server Link";
 
@@ -74,19 +74,21 @@ public class BetPredictorModel {
 
     /**
      * Gets data from the MLB Bet Buddy Server.
-     *
+     * <p>
      * This method is used to get data from the MLB Bet Buddy server, and parse it into a Vector of HashMaps so that it can easily be
      * accessed and manipulated. A connection is first attempted to be made with the MLB Bet Buddy Server. If a response is not received
      * within the timeout time, the request will timeout and an empty vector will be returned. If a response is received, the JSON data
      * returned is read line by line and built into one single string. This string is then parsed into a Vector of HashMaps (see ParseData()),
      * and returned.
-     *
+     * <p>
      * Assistance Received:
+     * <p>
      * https://docs.oracle.com/javase/tutorial/networking/urls/readingWriting.html
+     * <p>
      * https://stackoverflow.com/questions/2026260/java-how-to-use-urlconnection-to-post-request-with-authorization
      *
      * @param a_tableName A string, representing the table name located in the database to get the data from.
-     * @return A Vector<HashMap<String, Object> that represents the table data returned from the MLB Bet Buddy Server.
+     * @return A {@code Vector<HashMap<String, Object>>} that represents the table data returned from the MLB Bet Buddy Server.
      * @throws IOException if a URL object cannot be successfully created.
      */
     public Vector<HashMap<String, Object>> GetDataFromServer(String a_tableName) throws IOException {
@@ -125,18 +127,20 @@ public class BetPredictorModel {
 
     /**
      * Parses a string containing JSON data representing a table into a Vector of HashMaps.
-     *
+     * <p>
      * This method is used to parse a large string containing JSON data that is returned from the MLB Bet Buddy server into a Vector of
      * Hashmaps so that the data can be easily accessed and manipulated. Each HashMap in the Vector returned represents a row from a table.
      * Every key of the HashMap will always be a string, but the value for that key will vary between strings, doubles, and integers. The
      * parsing of the JSON string is handled with the Google's "Gson" library.
-     *
+     * <p>
      * Assistance Received:
+     * <p>
      * https://stackoverflow.com/questions/17970128/how-to-convert-string-array-to-object-using-gson-json
+     * <p>
      * https://www.baeldung.com/gson-json-to-map
      *
      * @param a_toParse A string, representing JSON data that needs to be parsed.
-     * @return A Vector<HashMap<String, Object>>, representing the parsed JSON data.
+     * @return A {@code Vector<HashMap<String, Object>>}, representing the parsed JSON data.
      */
     public Vector<HashMap<String, Object>> ParseData(String a_toParse) {
         //Set the type that the input string representing a JSON will be parsed into.
@@ -162,12 +166,14 @@ public class BetPredictorModel {
 
     /**
      * Converts a UTC date into a provided timezone.
-     *
+     * <p>
      * This method converts a UTC date string into the requested timezone, and formats it into the format "h:mm a". If the timezone
      * ID that is provided to this method is invalid, a default timezone of EST (Eastern Standard Time) is used.
-     *
+     * <p>
      * Assistance Received:
+     * <p>
      * https://stackoverflow.com/questions/6543174/how-can-i-parse-utc-date-time-string-into-something-more-readable
+     * <p>
      * https://stackoverflow.com/questions/42425393/how-to-format-a-zoneddatetime-to-a-string
      *
      * @param a_dateToConvert A string, representing UTC date that will be converted.

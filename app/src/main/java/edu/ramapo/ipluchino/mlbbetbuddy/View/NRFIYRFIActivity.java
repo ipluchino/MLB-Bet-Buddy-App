@@ -30,10 +30,10 @@ import java.util.TimeZone;
 import java.util.Vector;
 
 public class NRFIYRFIActivity extends AppCompatActivity {
-    //Constants.
+    //CONSTANTS
     private final String NRFIYRFI_TABLE_NAME = "TodayNRFI";
 
-    //Private variables
+    //PRIVATE VARIABLES
     private BetPredictorModel m_BPModelObj;
     private Vector<HashMap<String, Object>> m_NRFIYRFIBetPredictions;
     private TableLayout m_tableLayout;
@@ -44,16 +44,20 @@ public class NRFIYRFIActivity extends AppCompatActivity {
 
     /**
      * Creates the NRFIYRFIActivity.
-     *
+     * <p>
      * This method creates the NRFIYRFIActivity and sets the screen's view to the NRFIYRFI layout. It also initializes the private variables,
      * sets event handlers for buttons as well as the Spinner object that determines NRFI or YRFI as the bet type being displayed. The initial
      * ordering of the NRFI or YRFI bets is determined through the Intent object passed to this activity. Finally, the NRFIYRFI bet table is
      * dynamically filled in.
-     *
+     * <p>
      * Assistance Received:
+     * <p>
      * https://www.geeksforgeeks.org/reverse-order-of-all-elements-of-java-vector/
+     * <p>
      * https://stackoverflow.com/questions/11072576/set-selected-item-of-spinner-programmatically
+     * <p>
      * https://stackoverflow.com/questions/1337424/android-spinner-get-the-selected-item-change-event
+     * <p>
      * https://stackoverflow.com/questions/36131281/how-to-get-string-from-setonitemselectedlistener-method
      *
      * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most
@@ -158,14 +162,16 @@ public class NRFIYRFIActivity extends AppCompatActivity {
 
     /**
      * Dynamically fills in the TableLayout with the NRFI/YRFI bet predictions.
-     *
+     * <p>
      * This method dynamically fills in the TableLayout with TableRows, with each TableRow representing a NRFI or YRFI bet prediction for the current
      * day. Each created TableRow object contains the away team playing in the game and associated logo, the home team playing in the game and
      * associated logo, the local start time of the game, and the overall bet score. Additionally, each TableRow object has its OnClickListener
      * set so that if you click anywhere in the row, it takes you to the NRFIYRFIDetailsActivity screen to show more information about the bet prediction.
-     *
+     * <p>
      * Assistance Received:
+     * <p>
      * https://stackoverflow.com/questions/6583843/how-to-access-resource-with-dynamic-name-in-my-case
+     * <p>
      * https://stackoverflow.com/questions/8669747/dynamically-add-imageview-to-tablerow
      */
     private void FillNRFIYRFITable() {

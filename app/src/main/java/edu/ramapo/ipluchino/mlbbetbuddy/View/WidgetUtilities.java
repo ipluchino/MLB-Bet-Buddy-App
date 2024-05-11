@@ -33,7 +33,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import edu.ramapo.ipluchino.mlbbetbuddy.Model.BetPredictorModel;
 
 public class WidgetUtilities {
-    //Constants
+    //CONSTANTS
     //Valid table names that are stored in the database.
     private static final List<String> VALID_TABLES = Arrays.asList("TodaySchedule", "TodayNRFI", "TodayHitting", "ArchiveSchedule", "ArchiveNRFI", "ArchiveHitting");
 
@@ -51,7 +51,7 @@ public class WidgetUtilities {
 
     /**
      * Creates an ImageView object that represents a team's logo.
-     *
+     * <p>
      * This method is used to create an ImageView object that is a team logo. First, the correct ID of the logo image in the drawable
      * folder is determined (see GetLogoName()), and the ImageView's image resource is set to that image. Then, the ImageView object is
      * configured based on the parameters passed to this method, and the ImageView is returned.
@@ -82,7 +82,7 @@ public class WidgetUtilities {
 
     /**
      * Creates a TextView object, based on several passed parameters.
-     *
+     * <p>
      * This method creates and returns a TextView object based on several parameters provided to the method. The TextView object is
      * created and configured, then returned.
      *
@@ -109,7 +109,7 @@ public class WidgetUtilities {
 
     /**
      * Creates an ImageView object that represents a weather icon.
-     *
+     * <p>
      * This method is used to create an ImageView object that is a weather icon. First, the correct ID of the weather icon image in the
      * drawable folder is determined (see GetWeatherIconName()), and the ImageView's image resource is set to that image. Then, the ImageView
      * object is configured based on the parameters passed to this method, and the ImageView is returned.
@@ -140,8 +140,9 @@ public class WidgetUtilities {
 
     /**
      * Creates a SpannableString object that contains partially bolded text.
-     *
+     * <p>
      * Assistance Received:
+     * <p>
      * https://stackoverflow.com/questions/14371092/how-to-make-a-specific-text-on-textview-bold
      *
      * @param a_boldText A string, representing the portion of the text that should be bolded.
@@ -156,18 +157,20 @@ public class WidgetUtilities {
 
     /**
      * Gets data from the MLB Bet Buddy Server.
-     *
+     * <p>
      * This method is used to retrieve data from the MLB Bet Buddy server, and return it as a Vector of HashMaps. If the table name provided
      * to this method is invalid, an empty Vector is returned. If the table name is valid, a new thread is created and the data is attempted
      * to be retrieved from the server (see GetDataFromServer() in the BetPredictorModel class). If the server does not respond, and the request
      * times out, an empty Vector is returned.
-     *
+     * <p>
      * Assistance Received:
+     * <p>
      * https://stackoverflow.com/questions/6343166/how-can-i-fix-android-os-networkonmainthreadexception
+     * <p>
      * https://stackoverflow.com/questions/60408193/local-atomicreference-and-array-with-lambda
      *
      * @param a_tableName A string, representing the name of the table the data will be extracted from.
-     * @return A Vector<HashMap<String, Object>> representing the extracted data from the MLB Bet Buddy server.
+     * @return A {@code Vector<HashMap<String, Object>>} representing the extracted data from the MLB Bet Buddy server.
      */
     public static Vector<HashMap<String, Object>> GetData(String a_tableName) {
         //Make sure the table being provided to this function is a valid one.
@@ -226,16 +229,16 @@ public class WidgetUtilities {
 
     /**
      * Fills in the text of several TextView objects dynamically.
-     *
+     * <p>
      * This method is used to dynamically set the text of several TextView objects representing either schedule information or bet prediction
      * information. Each Vector in a_fieldInformation contains the TextView object to modify, the key in a_dataHashMap to find the text to fill in,
      * whether or not the text should be partially bolded, and what to round the text to if it is a double. Each of those Vectors is looped through,
      * and every TextView is filled in with the correct text based on the information within each Vector.
      *
-     * @param a_fieldInformation A Vector<Vector<Object>>, where each inner Vector contains the TextView objects that need to be filled with text,
+     * @param a_fieldInformation A {@code Vector<Vector<Object>>}, where each inner Vector contains the TextView objects that need to be filled with text,
      *                           the keys in a_dataHashMap to find the text to fill the TextView objects with, whether or not the text should be
      *                           partially bolded, and how many decimal places to round the text to for fields that are doubles.
-     * @param a_dataHashMap A HashMap<String, Object>, containing the information returned from the MLB Bet Buddy server that needs to be
+     * @param a_dataHashMap A {@code HashMap<String, Object>}, containing the information returned from the MLB Bet Buddy server that needs to be
      *                      displayed on the screen.
      */
     public static void FillInTableTextViews(Vector<Vector<Object>> a_fieldInformation, HashMap<String, Object> a_dataHashMap) {
@@ -269,7 +272,7 @@ public class WidgetUtilities {
 
     /**
      * Sets the top bets to different backgrounds, depending on how good they are.
-     *
+     * <p>
      * This method is used to set the backgrounds of the individual rows in a_betTable, for the top bets only. If there are not enough rows to
      * change all the requested rows, none of rows are changed. For example, if the number of gold, silver, and bronze top bets are 1, 2, and 3
      * respectively, the first row will have a gold background, the next two a silver background, and the next three a bronze background.
@@ -312,7 +315,7 @@ public class WidgetUtilities {
 
     /**
      * Shortens a player's name for spacing purposes.
-     *
+     * <p>
      * This method is used to shorten a player's name into their first initial and last name. Also, if the player contains multiple names
      * separated by dashes, only the any names after the first dash is removed. Example: Jack Jackson --> J. Jackson.
      *
@@ -357,7 +360,7 @@ public class WidgetUtilities {
 
     /**
      * Gets the file name of a weather icon for a weather description.
-     *
+     * <p>
      * This method is used to obtain the file name of a weather icon depending on the provided weather description. There are several different
      * types of weather descriptions, but the weather icon is determined via keywords. For example, any weather description that contains "thunder"
      * such as "Moderate Thunderstorm" or "Heavy Thunderstorm" is associated with the thunderstorm weather icon.
