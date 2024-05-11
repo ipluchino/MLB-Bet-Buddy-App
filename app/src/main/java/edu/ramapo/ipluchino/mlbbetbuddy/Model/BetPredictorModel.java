@@ -26,7 +26,7 @@ import java.time.format.DateTimeFormatter;
 public class BetPredictorModel {
     //CONSTANTS.
     //The endpoint used to obtain data from the MLB Bet Buddy server.
-    private static final String VIEW_LINK = "http://108.53.156.205:5000/view/";
+    private static final String VIEW_LINK = "http://MLBBetBuddy.com/view/";
 
     //The amount of time to wait for the server to respond before timing out.
     private static final int TIMEOUT_TIME = 3000;
