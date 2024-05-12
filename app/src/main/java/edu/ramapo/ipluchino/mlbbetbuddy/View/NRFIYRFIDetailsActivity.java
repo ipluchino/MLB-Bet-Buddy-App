@@ -122,7 +122,7 @@ public class NRFIYRFIDetailsActivity extends AppCompatActivity {
             }
         });
 
-        //A vector of vectors containing all of the required information to fill in the schedule details table.
+        //A vector of vectors containing all of the required information to fill in the NRFI/YRFI details table.
         //FORMAT: TextView object, the key in the HashMap for NRFI/YRFI bet prediction information, and whether or not the text
         //should be partially bolded (for single columns lines) There is an additional entry for fields that are doubles,
         //used to determine the number of decimal places to round to.
