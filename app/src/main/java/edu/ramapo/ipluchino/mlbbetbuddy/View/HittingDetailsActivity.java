@@ -30,12 +30,15 @@ public class HittingDetailsActivity extends AppCompatActivity {
     private TextView m_hitterNameTextView;
     private TextView m_hitterTeamTextView;
     private TextView m_batHandTextView;
-    private TextView m_seasonBATextView, m_seasonOBPTextView, m_seasonHomersTextView, m_seasonOPSTextView;
+    private TextView m_seasonBATextView, m_seasonOBPTextView;
+    private TextView m_seasonHomersTextView, m_seasonOPSTextView;
     private TextView m_vsLeftBATextView, m_vsRightBATextView;
     private TextView m_opposingPitcherNameTextView, m_opposingPitcherTeamTextView, m_pitchHandTextView;
     private TextView m_vsLeftBAATextView, m_vsRightBAATextView;
-    private TextView m_careerAgainstPATextView, m_careerAgainstBATextView, m_careerAgainstOPSTextView, m_careerAgainstHittingClassificationTextView;
-    private TextView m_last10GamesPATextView, m_last10GamesBATextView, m_last10GamesOPSTextView, m_last10GamesHittingClassificationTextView;
+    private TextView m_careerAgainstPATextView, m_careerAgainstBATextView;
+    private TextView m_careerAgainstOPSTextView, m_careerAgainstHittingClassificationTextView;
+    private TextView m_last10GamesPATextView, m_last10GamesBATextView;
+    private TextView m_last10GamesOPSTextView, m_last10GamesHittingClassificationTextView;
     private TextView m_localGameTimeTextView;
     private TextView m_stadiumTextView;
     private TextView m_ballParkFactorTextView;
@@ -108,9 +111,10 @@ public class HittingDetailsActivity extends AppCompatActivity {
             }
         });
 
-        //A vector of vectors containing all of the required information to fill in the bet details table.
-        //FORMAT: TextView object, key in hashmap for bet information, and whether or not the text should be partially bolded (for single columns lines).
-        //There is an additional entry for fields that are doubles, used to determine the number of decimal places to round to.
+        //A vector of vectors containing all of the required information to fill in the schedule details table.
+        //FORMAT: TextView object, key in hashmap for schedule information, and whether or not the text should be partially
+        //bolded (for single columns lines) There is an additional entry for fields that are doubles, used to determine the
+        //number of decimal places to round to.
         Vector<Vector<Object>> fieldInformation = new Vector<Vector<Object>>() {{
             add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false); add(null);} });
             add(new Vector<Object>() { { add(m_hitterNameTextView); add("Hitter Name"); add(true); add(null);} });
@@ -150,14 +154,15 @@ public class HittingDetailsActivity extends AppCompatActivity {
     /**
      * Fills in the specific bet details for the hitting bet.
      * <p>
-     * This method is used to fill in the specific bet details into the TextViews when a user opens the details about a hitting bet. First, the
-     * local game time is set (see ConvertToTimezone() in the BetPredictorModel class). Then, the remaining TextViews are automatically filled in
-     * based on the information provided from the MLB Bet Buddy server (see FillInTableTextViews() in the WidgetUtilities class).
+     * This method is used to fill in the specific bet details into the TextViews when a user opens the details about a hitting bet.
+     * First, the local game time is set (see ConvertToTimezone() in the BetPredictorModel class). Then, the remaining TextViews are
+     * automatically filled in based on the information provided from the MLB Bet Buddy server (see FillInTableTextViews() in the
+     * WidgetUtilities class).
      *
-     * @param a_fieldInformation A {@code Vector<Vector<Object>>}, where each inner Vector contains the TextView objects that need to be filled with text,
-     *                           the keys in the HashMap obtained from the MLB Bet Buddy server to find the text to fill the TextView objects with,
-     *                           whether or not the text should be partially bolded, and how many decimal places to round the text to for fields that
-     *                           are doubles.
+     * @param a_fieldInformation A {@code Vector<Vector<Object>>}, where each inner Vector contains the TextView objects that need to
+     *                           be filled with text, the keys in the HashMap obtained from the MLB Bet Buddy server to find the text
+     *                           to fill the TextView objects with, whether or not the text should be partially bolded, and how many
+     *                           decimal places to round the text to for fields that are doubles.
      */
     private void FillBetDetails(Vector<Vector<Object>> a_fieldInformation) {
         //Set the local time.

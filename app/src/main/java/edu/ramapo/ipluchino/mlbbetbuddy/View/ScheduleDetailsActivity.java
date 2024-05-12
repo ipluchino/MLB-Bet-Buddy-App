@@ -87,8 +87,9 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
         });
 
         //A vector of vectors containing all of the required information to fill in the schedule details table.
-        //FORMAT: TextView object, key in hashmap for schedule information, and whether or not the text should be partially bolded (for single columns lines).
-        //There is an additional entry for fields that are doubles, used to determine the number of decimal places to round to.
+        //FORMAT: TextView object, key in hashmap for schedule information, and whether or not the text should be partially
+        //bolded (for single columns lines) There is an additional entry for fields that are doubles, used to determine the
+        //number of decimal places to round to.
         Vector<Vector<Object>> fieldInformation = new Vector<Vector<Object>>() {{
             add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false); add(null);} });
             add(new Vector<Object>() { { add(m_homeTeamNameTextView); add("Home Team Name"); add(false); add(null);} });
@@ -111,15 +112,16 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
     /**
      * Fills in the specific game details.
      * <p>
-     * This method is used to fill in the specific game details into the TextViews when a user opens the details about a game on the schedule. First,
-     * the TextView representing the title of the screen is updated based on which team is playing each other in the format "Away Team @ Home Team".
-     * Then, the local game time is set (see ConvertToTimezone() in the BetPredictorModel class). Finally, the remaining TextViews are automatically
-     * filled in based on the information provided from the MLB Bet Buddy server (see FillInTableTextViews() in the WidgetUtilities class).
+     * This method is used to fill in the specific game details into the TextViews when a user opens the details about a game on the schedule.
+     * First, the TextView representing the title of the screen is updated based on which team is playing each other in the format
+     * "Away Team @ Home Team". Then, the local game time is set (see ConvertToTimezone() in the BetPredictorModel class). Finally,
+     * the remaining TextViews are automatically filled in based on the information provided from the MLB Bet Buddy server (see
+     * FillInTableTextViews() in the WidgetUtilities class).
      *
-     * @param a_fieldInformation A {@code Vector<Vector<Object>>}, where each inner Vector contains the TextView objects that need to be filled with text,
-     *                           the keys in the HashMap obtained from the MLB Bet Buddy server to find the text to fill the TextView objects with,
-     *                           whether or not the text should be partially bolded, and how many decimal places to round the text to for fields that
-     *                           are doubles.
+     * @param a_fieldInformation A {@code Vector<Vector<Object>>}, where each inner Vector contains the TextView objects that need to
+     *                           be filled with text, the keys in the HashMap obtained from the MLB Bet Buddy server to find the text to
+     *                           fill the TextView objects with, whether or not the text should be partially bolded, and how many decimal
+     *                           places to round the text to for fields that are doubles.
      */
     private void FillGameDetails(Vector<Vector<Object>> a_fieldInformation) {
         //Set the fields that require additional processing.
