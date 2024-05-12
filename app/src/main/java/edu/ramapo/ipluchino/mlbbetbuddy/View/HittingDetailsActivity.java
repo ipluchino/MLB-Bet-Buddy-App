@@ -113,7 +113,7 @@ public class HittingDetailsActivity extends AppCompatActivity {
 
         //A vector of vectors containing all of the required information to fill in the hitting details table.
         //FORMAT: TextView object, the key in the HashMap for hitting bet prediction information, and whether or not the text
-        //should be partially bolded (for single columns lines). There is an additional entry for fields that are doubles,
+        //should be partially bolded (for rows with one column only). There is an additional entry for fields that are doubles,
         //used to determine the number of decimal places to round to.
         Vector<Vector<Object>> fieldInformation = new Vector<Vector<Object>>() {{
             add(new Vector<Object>() { { add(m_dateTextView); add("Date"); add(false); add(null);} });
