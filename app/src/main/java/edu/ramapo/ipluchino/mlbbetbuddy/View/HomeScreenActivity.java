@@ -76,15 +76,16 @@ public class HomeScreenActivity extends AppCompatActivity {
     /**
      * Determines the initial bet choice if the user wishes to view NRFI/YRFI bet predictions.
      * <p>
-     * This method is used to determine which type of bet, either NRFI or YRFI, the user would like to view when they select the "NRFI & YRFI" button
-     * on the home screen. The choice is determined via an alert dialog. Once the user makes a selection, the screen is switched to the NRFIYRFIActivity,
-     * with the initial ordering of the bets depending on what the user selected on the alert dialog.
+     * This method is used to determine which type of bet, either NRFI or YRFI, the user would like to view when they select the "NRFI & YRFI"
+     * button on the home screen. The choice is determined via an alert dialog. Once the user makes a selection, the screen is switched to
+     * the NRFIYRFIActivity, with the initial ordering of the bets depending on what the user selected on the alert dialog.
      */
     private void DetermineNRFIYRFI() {
         //Create an alert dialog box to get input from the user.
         AlertDialog.Builder builder = new AlertDialog.Builder(HomeScreenActivity.this);
         builder.setTitle("Bet Choice");
-        builder.setMessage("Please choose a bet type: NRFI or YRFI. \n\nNote: The lower the bet score, the better for NRFI, and the higher the bet score, the better for YRFI.");
+        builder.setMessage("Please choose a bet type: NRFI or YRFI. " +
+                "\n\nNote: The lower the bet score, the better for NRFI, and the higher the bet score, the better for YRFI.");
 
         //OK button to clear the alert dialog.
         builder.setPositiveButton("YRFI", new DialogInterface.OnClickListener() {

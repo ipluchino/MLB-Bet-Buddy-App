@@ -80,7 +80,8 @@ public class NRFIYRFIActivity extends AppCompatActivity {
 
         //Determine the initial ordering of the bets.
         if (Objects.equals(getIntent().getStringExtra("betChoice"), "YRFI")) {
-            //If the initial ordering if "YRFI", the order of the games vector needs to be reversed since the games are returned by the server in NRFI order by default.
+            //If the initial ordering if "YRFI", the order of the games vector needs to be reversed since the games are returned by the
+            //server in NRFI order by default.
             Collections.reverse(m_NRFIYRFIBetPredictions);
 
             //Set the choice in the spinner as well to match.
@@ -163,10 +164,11 @@ public class NRFIYRFIActivity extends AppCompatActivity {
     /**
      * Dynamically fills in the TableLayout with the NRFI/YRFI bet predictions.
      * <p>
-     * This method dynamically fills in the TableLayout with TableRows, with each TableRow representing a NRFI or YRFI bet prediction for the current
-     * day. Each created TableRow object contains the away team playing in the game and associated logo, the home team playing in the game and
-     * associated logo, the local start time of the game, and the overall bet score. Additionally, each TableRow object has its OnClickListener
-     * set so that if you click anywhere in the row, it takes you to the NRFIYRFIDetailsActivity screen to show more information about the bet prediction.
+     * This method dynamically fills in the TableLayout with TableRows, with each TableRow representing a NRFI or YRFI bet prediction for
+     * the current day. Each created TableRow object contains the away team playing in the game and associated logo, the home team playing
+     * in the game and associated logo, the local start time of the game, and the overall bet score. Additionally, each TableRow object has
+     * its OnClickListener set so that if you click anywhere in the row, it takes you to the NRFIYRFIDetailsActivity screen to show more
+     * information about the bet prediction.
      * <p>
      * Assistance Received:
      * <p>
@@ -233,7 +235,8 @@ public class NRFIYRFIActivity extends AppCompatActivity {
             TextView gameTime = WidgetUtilities.CreateTextView(this, localGameTime, 15, 0, 50, 60, 20);
             tableRow.addView(gameTime);
 
-            //Create the NRFI or YRFI score. Note: All scores are stored in the database as "Overall NRFI Score". Low NRFI scores are good for NRFI, and high NRFI scores are good for YRFI.
+            //Create the NRFI or YRFI score. Note: All scores are stored in the database as "Overall NRFI Score".
+            //Low NRFI scores are good for NRFI, and high NRFI scores are good for YRFI.
             String roundedScore = String.format("%.1f", (Double) betPrediction.get("Overall NRFI Score") * 100.0);
             TextView betChoice = WidgetUtilities.CreateTextView(this, "", 15, 0, 50, 0, 20);
             betChoice.setText(WidgetUtilities.MakePartialTextBold("Score: ", roundedScore));
