@@ -151,6 +151,7 @@ public class WidgetUtilities {
      */
     public static SpannableString MakePartialTextBold(String a_boldText, String a_restText) {
         SpannableString partialBoldedString = new SpannableString(a_boldText + a_restText);
+        //Make only the desired portion of the text bold.
         partialBoldedString.setSpan(new StyleSpan(Typeface.BOLD), 0, a_boldText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return partialBoldedString;
     }
@@ -235,11 +236,11 @@ public class WidgetUtilities {
      * whether or not the text should be partially bolded, and what to round the text to if it is a double. Each of those Vectors is looped through,
      * and every TextView is filled in with the correct text based on the information within each Vector.
      *
-     * @param a_fieldInformation A {@code Vector<Vector<Object>>}, where each inner Vector contains the TextView objects that need to be filled with text,
-     *                           the keys in a_dataHashMap to find the text to fill the TextView objects with, whether or not the text should be
-     *                           partially bolded, and how many decimal places to round the text to for fields that are doubles.
-     * @param a_dataHashMap A {@code HashMap<String, Object>}, containing the information returned from the MLB Bet Buddy server that needs to be
-     *                      displayed on the screen.
+     * @param a_fieldInformation A {@code Vector<Vector<Object>>}, where each inner Vector contains the TextView objects that need to be filled
+     *                           with text, the keys in a_dataHashMap to find the text to fill the TextView objects with, whether or not the text
+     *                           should be partially bolded, and how many decimal places to round the text to for fields that are doubles.
+     * @param a_dataHashMap A {@code HashMap<String, Object>}, containing the information returned from the MLB Bet Buddy server
+     *                      that needs to be displayed on the screen.
      */
     public static void FillInTableTextViews(Vector<Vector<Object>> a_fieldInformation, HashMap<String, Object> a_dataHashMap) {
         //Loop through each of the fields, and dynamically fill them in based on information from the hash map containing the data.
