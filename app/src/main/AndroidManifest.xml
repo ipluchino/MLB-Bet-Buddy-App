@@ -22,7 +22,8 @@
             android:name=".View.HomeScreenActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MLBBetBuddy" >
+            android:theme="@style/Theme.MLBBetBuddy"
+            android:screenOrientation="portrait" >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,42 +35,48 @@
             android:name=".View.ScheduleActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MLBBetBuddy" >
+            android:theme="@style/Theme.MLBBetBuddy"
+            android:screenOrientation="portrait" >
         </activity>
 
         <activity
             android:name=".View.ScheduleDetailsActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MLBBetBuddy" >
+            android:theme="@style/Theme.MLBBetBuddy"
+            android:screenOrientation="portrait" >
         </activity>
 
         <activity
             android:name=".View.NRFIYRFIActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MLBBetBuddy" >
+            android:theme="@style/Theme.MLBBetBuddy"
+            android:screenOrientation="portrait" >
         </activity>
 
         <activity
             android:name=".View.NRFIYRFIDetailsActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MLBBetBuddy" >
+            android:theme="@style/Theme.MLBBetBuddy"
+            android:screenOrientation="portrait" >
         </activity>
 
         <activity
             android:name=".View.HittingActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MLBBetBuddy" >
+            android:theme="@style/Theme.MLBBetBuddy"
+            android:screenOrientation="portrait" >
         </activity>
 
         <activity
             android:name=".View.HittingDetailsActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MLBBetBuddy" >
+            android:theme="@style/Theme.MLBBetBuddy"
+            android:screenOrientation="portrait" >
         </activity>
 
     </application>
