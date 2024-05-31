@@ -1,4 +1,6 @@
 # MLB Bet Buddy
+![ScreenShot](bet_buddy_logo.png)
+
 The MLB Bet Buddy is a helpful tool, which creates daily bet predictions on outcomes of MLB games. This is the Android app portion of the application, and its main responsiblity is to act as a display for daily MLB schedule information and the bet predictions. All calculations and data extraction/generation is done server-side to improve app speeds. 
 
 ## Bet Prediction Creation
