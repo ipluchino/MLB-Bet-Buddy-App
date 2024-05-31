@@ -6,7 +6,7 @@ The MLB Bet Buddy is a helpful tool, which creates daily bet predictions on outc
 ## Bet Prediction Creation
 The formulas created for bet prediction creation are complex, and involve numerous offensive and pitching statistics. Formulas were rigourously backtested with hundreds of games and player statistics from previous seasons. Machine learning algorithms, such as Bayesian Optimization, were used to optimize the impact of each individual statistics in the formula in order to make the bet predictions as accurate as possible.
 
-Note: All formulas and processes regarding the bet prediction creation have been omitted from this repository. If you wish to learn more about how the bet predicitons are created, reach out to me.
+**Note:** All formulas and processes regarding the bet prediction creation have been omitted from this repository. If you wish to learn more about how the bet predicitons are created, reach out to me.
 
 ## NRFI & YRFI Bet Predicitions
 The first main type of bet predictions that the MLB Bet Buddy makes is NRFI and YRFI bets, which stand for "No Run First Inning" and "Yes Run First Inning" respectively. All this means is that you are betting on whether or not a run will be scored in the first inning of the game by either team. If after the 1st inning concludes and no run has been scores, the NRFI wins, and if after the 1st inning concludes at least 1 run has been scored by either team, the YRFI wins. These types of bets have quickly become some of the most popular bet types among baseball bettors, as they finish much quicker than an entire baseball game.
