@@ -4,7 +4,7 @@
 The MLB Bet Buddy is a helpful tool, which creates daily bet predictions on outcomes of MLB games. This is the Android app portion of the application, and its main responsiblity is to act as a display for daily MLB schedule information and the bet predictions. All calculations and data extraction/generation is done server-side to improve app speeds. 
 
 ## Bet Prediction Creation
-The formulas created for bet prediction creation are complex, and involve numerous offensive and pitching statistics. Formulas were rigourously backtested with hundreds of games and player statistics from previous seasons. Machine learning algorithms, such as Bayesian Optimization, were used to optimize the impact of each individual statistics in the formula in order to make the bet predictions as accurate as possible.
+The formulas created for bet prediction creation are complex, and involve numerous offensive and pitching statistics. Formulas were rigourously backtested with hundreds of games and player statistics from previous seasons. Machine learning algorithms, such as Bayesian Optimization, were used to optimize the impact of each individual statistic in the formula in order to make the bet predictions as accurate as possible.
 
 **Note:** All formulas and processes regarding the bet prediction creation have been omitted from this repository. If you wish to learn more about how the bet predicitons are created, reach out to me.
 
